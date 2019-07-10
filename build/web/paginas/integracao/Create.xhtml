@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="top">Cadastro de Integracao</ui:define>
+
+        <ui:define name="body">
+            <p:tabView>
+                <p:tab title="Cadastro">
+                    <h:form>
+                        <h:panelGrid columns="2" cellpadding="5">
+
+                            <p:outputLabel value="#{bundle.CreateIntegracaoLabel_dtInicio}" for="dtInicio" />
+                            <p:calendar pattern="dd/MM/yyyy" mask="true"  id="dtInicio" value="#{integracaoController.selected.dtInicio}" title="#{bundle.CreateIntegracaoTitle_dtInicio}" />
+
+
+                            <p:outputLabel value="#{bundle.CreateIntegracaoLabel_dtFim}" for="dtFim" />
+                            <p:calendar pattern="dd/MM/yyyy" mask="true"  id="dtFim" value="#{integracaoController.selected.dtFim}" title="#{bundle.CreateIntegracaoTitle_dtFim}" />
+
+                            <p:outputLabel value="#{bundle.CreateIntegracaoLabel_empresaIntegracao}" for="empresaIntegracao" />
+                            <p:inputText style="text-transform: uppercase" id="empresaIntegracao" value="#{integracaoController.selected.empresaIntegracao}" title="#{bundle.CreateIntegracaoTitle_empresaIntegracao}" />
+
+                            <p:outputLabel value="#{bundle.CreateIntegracaoLabel_cpfFuncionario}" for="cpfFuncionario" />
+                            <p:selectOneMenu id="cpfFuncionario" 
+                                             value="#{integracaoController.selected.cpfFuncionario}" 
+                                             required="true" 
+                                             style="width:170px"
+                                             filter="true">
+                                <f:selectItems value="#{funcionarioController.itemsAvailableSelectOne}"/>
+                            </p:selectOneMenu>
+                        </h:panelGrid>
+                        <br></br>
+                        <br></br>
+                        <p:splitButton id= "Save" action="#{integracaoController.create}" value="#{bundle.CreateIntegracaoSaveLink}" icon="ui-icon-disk" ajax="false" update="growl" >
+                            <p:separator></p:separator>
+                            <p:menuitem id= "exibir" action="#{integracaoController.prepareList}" value="#{bundle.CreateIntegracaoShowAllLink}" immediate="true" icon="ui-icon-document" ajax="false" update="growl"  />
+                            <p:menuitem id= "limpa" value="Limpar campos"  process="@this" actionListener="#{integracaoController.resetFail()}" icon="ui-icon-refresh" ajax="false" update="growl"  />
+                        </p:splitButton>
+
+                    </h:form>
+                </p:tab>
+                <p:tab title="Lista Cadastro">
+                    <h:form styleClass="jsfcrud_list_form">
+                        <h:panelGroup id="messagePanel" layout="block">
+                            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                        </h:panelGroup>
+                        <h:outputText escape="false" value="#{bundle.ListIntegracaoEmpty}" rendered="#{integracaoController.items.rowCount == 0}"/>
+                        <h:panelGroup rendered="#{integracaoController.items.rowCount > 0}">
+                            <h:outputText value="#{integracaoController.pagination.itemsCount} Registros"/>&nbsp;
+                            <p:dataTable value="#{integracaoController.items}" 
+                                         id="tbl" 
+                                         paginator="true"  
+                                         rows="10"
+                                         var="item"  
+                                         paginatorTemplate="{CurrentPageReport}
+                                         {FirstPageLink} 
+                                         {PreviousPageLink} 
+                                         {PageLinks} 
+                                         {NextPageLink} 
+                                         {LastPageLink}
+                                         " 
+                                         style="margin-bottom:20px">
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListIntegracaoTitle_idIntegracao}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.idIntegracao}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListIntegracaoTitle_dtInicio}"/>
+                                    </f:facet>
+                                    <h:outputText style="text-transform: uppercase" value="#{item.dtInicio}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListIntegracaoTitle_dtFim}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.dtFim}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListIntegracaoTitle_empresaIntegracao}"/>
+                                    </f:facet>
+                                    <h:outputText style="text-transform: uppercase" value="#{item.empresaIntegracao}"/>
+                                </p:column>
+                                <p:column>
+
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListIntegracaoTitle_cpfFuncionario}"/>
+                                    </f:facet>
+                                    <h:outputText style="text-transform: uppercase" value="#{item.cpfFuncionario.nmFuncionario}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="&nbsp;"/>
+                                    </f:facet>
+                                    <h:commandLink action="#{integracaoController.prepareView}" value="#{bundle.ListIntegracaoViewLink}"/>
+                                    <h:outputText value=" "/>
+                                    <h:commandLink action="#{integracaoController.prepareEdit}" value="#{bundle.ListIntegracaoEditLink}"/>
+                                    <h:outputText value=" "/>
+                                    <h:commandLink action="#{integracaoController.destroy}" value="#{bundle.ListIntegracaoDestroyLink}"/>
+                                </p:column>
+                            </p:dataTable>
+                            <h:commandLink>
+                                <p:graphicImage  library="image" name="excel.png" width="24"/>
+                                <p:dataExporter type="xls" target="tbl" fileName="Relatorio_Integracao" />
+                            </h:commandLink>
+                        </h:panelGroup>
+
+                    </h:form>
+                </p:tab>
+            </p:tabView>
+        </ui:define>
+    </ui:composition>
+
+</html>

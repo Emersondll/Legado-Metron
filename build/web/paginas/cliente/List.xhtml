@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="top">Lista de Clientes</ui:define>
+
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form" id="formulario">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListClienteEmpty}" rendered="#{clienteController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{clienteController.items.rowCount > 0}">
+                    <h:outputText value="#{clienteController.pagination.itemsCount} Registros"/>&nbsp;
+                    <p:dataTable value="#{clienteController.items}" 
+                                 id="tbl" 
+                                 paginator="true"  
+                                 rows="10"
+                                 var="item"  
+                                 paginatorTemplate="{CurrentPageReport}
+                                 {FirstPageLink} 
+                                 {PreviousPageLink} 
+                                 {PageLinks} 
+                                 {NextPageLink} 
+                                 {LastPageLink}" 
+                                 style="margin-bottom:20px"
+                                 rowKey="#{item.id}"
+                                 >
+                        <p:column filterBy="#{item.cdCliente}" width="130" id="id1" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClienteTitle_cdCliente}" />
+                            </f:facet>
+                            <h:outputText value="#{item.cdCliente}" style="text-transform: uppercase" />
+                        </p:column>
+
+                        <p:column filterBy="#{item.nmCliente}" width="130" id="id2" filterMatchMode="contains">
+
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClienteTitle_nmCliente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nmCliente}" style="text-transform: uppercase" />
+                        </p:column>
+                        <p:column id="id3">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClienteTitle_endereco}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.endereco}" style="text-transform: uppercase" />
+                        </p:column>
+                        <p:column id="id4">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClienteTitle_bairro}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.bairro}" style="text-transform: uppercase" />
+                        </p:column >
+                        <p:column filterBy="#{item.cidade}" id="id5" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClienteTitle_cidade}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cidade}" style="text-transform: uppercase" />
+                        </p:column>
+
+                        <p:column id="id6">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClienteTitle_foneComercial}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.foneComercial}" style="text-transform: uppercase"/>
+                        </p:column>
+                        <p:column id="id7">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClienteTitle_foneResidencial}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.foneResidencial}" style="text-transform: uppercase"/>
+                        </p:column>
+                        <p:column id="id8">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClienteTitle_celular}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.celular}" style="text-transform: uppercase"/>
+                        </p:column>
+                        <p:column filterBy="#{item.tpPessoa}" width="130" id="id9" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClienteTitle_tpPessoa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tpPessoa}" style="text-transform: uppercase"/>
+                        </p:column>
+                        <p:column  filterBy="#{item.cpfCnpj}" width="130" id="id10" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClienteTitle_cpfCnpj}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cpfCnpj}" style="text-transform: uppercase"/>
+                        </p:column>
+                        <p:column id="id11">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClienteTitle_rgInsc}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rgInsc}" style="text-transform: uppercase"/>
+                        </p:column>
+                        <p:column id="id12">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClienteTitle_email}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.email}" style="text-transform: lowercase" />
+                        </p:column>
+                        <p:column id="id13">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClienteTitle_observacao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.observacao}" style="text-transform: lowercase" />
+                        </p:column>
+
+                    </p:dataTable>
+                    <h:commandLink>
+                        <p:graphicImage  library="image" name="excel.png" width="24"/>
+                        <p:dataExporter type="xls" target="tbl" fileName="Relatorio_Clientes" />
+                    </h:commandLink>
+                </h:panelGroup>
+                <br />
+                <p:commandButton action="#{clienteController.prepareCreate}" value="#{bundle.ListClienteCreateLink}"/>      
+
+                
+                
+                <br />
+
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

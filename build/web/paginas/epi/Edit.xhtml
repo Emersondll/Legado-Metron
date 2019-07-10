@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="top">Lista Saída de EPI</ui:define>
+
+        <ui:define name="body">
+
+
+            <h:form>
+                <h:panelGrid columns="2">
+                    <p:outputLabel value="Descricao EPI" for="dsEpi" />
+                    <p:inputText id="dsEpi" value="#{epiController.selected.dsEpi}" title="Descrição EPI" />
+
+                    <p:outputLabel value="Valor" for="valor" />
+                    <p:inputText id="valor" value="#{epiController.selected.valor}" title="Valor" />
+
+                    <p:outputLabel value="Data Retirada" for="dataRetirada" />
+                    <p:calendar required="true" pattern="dd/MM/yyyy" mask="true" id="dataRetirada" value="#{epiController.selected.dataRetirada}" title="Data Retirada" />
+
+
+
+                    <p:outputLabel value="Funcionário" for="funcionario" />
+
+                    <p:selectOneMenu id="funcionario" 
+                                     value="#{epiController.selected.funcionario}" 
+                                     requiredMessage="Funcionário é campo obrigatório" 
+                                     required="true" 
+                                     style="width:170px"
+                                     filter="true">
+                        <f:selectItems value="#{funcionarioController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+                </h:panelGrid>
+
+                <br></br>
+                <br></br>
+                <p:splitButton id= "Save" action="#{epiController.update}" value="Salvar" icon="ui-icon-disk" ajax="false" update="growl" >
+                    <p:separator></p:separator>
+                    <p:menuitem id= "exibirtodos" action="#{epiController.prepareList}" value="Mostrar todas retiradas de EPI" immediate="true" icon="ui-icon-document" ajax="false" update="growl"  />
+                    <p:menuitem id= "vieweste" outcome="View" value="Visualizar" icon="ui-icon-refresh" ajax="false" update="growl"  />
+                </p:splitButton>
+            </h:form>
+
+
+        </ui:define>
+    </ui:composition>
+
+</html>

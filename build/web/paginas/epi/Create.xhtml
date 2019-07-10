@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="top">Cadastro Saída de EPI</ui:define>
+
+        <ui:define name="body">
+            <p:tabView>
+                <p:tab title="Lançamento">
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <p:outputLabel value="Descricao EPI" for="dsEpi" />
+                            <p:inputText id="dsEpi" value="#{epiController.selected.dsEpi}" title="Descricao EPI" />
+
+                            <p:outputLabel value="Valor" for="valor" />
+                            <p:inputText id="valor" value="#{epiController.selected.valor}" title="Valor" />
+
+                            <p:outputLabel value="Data Retirada" for="dataRetirada" />
+                            <p:calendar required="true" pattern="dd/MM/yyyy" mask="true" id="dataRetirada" value="#{epiController.selected.dataRetirada}" title="Data Retirada" />
+
+                            <p:outputLabel value="Funcionário" for="funcionario" />                    
+                            <p:selectOneMenu id="funcionario" 
+                                             value="#{epiController.selected.funcionario}" 
+                                             requiredMessage="Funcionário é campo obrigatório" 
+                                             required="true" 
+                                             style="width:170px"
+                                             filter="true">
+                                <f:selectItems value="#{funcionarioController.itemsAvailableSelectOne}"/>
+                            </p:selectOneMenu>
+                        </h:panelGrid>
+
+                        <br></br>
+                        <br></br>
+                        <p:splitButton id= "Save" action="#{epiController.create}" value="Salvar" icon="ui-icon-disk" ajax="false" update="growl">
+                            <p:separator></p:separator>
+                            <p:menuitem id= "exibir" action="#{epiController.prepareList}" value="Exibir" immediate="true" icon="ui-icon-document" ajax="false" update="growl"  />
+                            <p:menuitem id= "limpa" value="Limpar campos"  process="@this" actionListener="#{epiController.resetFail()}" icon="ui-icon-refresh" ajax="false" update="growl"  />
+
+                        </p:splitButton>
+
+                    </h:form>
+                </p:tab>
+                <p:tab title="Lista Lançamentos">
+                    <h:form styleClass="jsfcrud_list_form">
+                        <h:panelGroup id="messagePanel" layout="block">
+                            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                        </h:panelGroup>
+
+                        <h:outputText escape="false" value="Sem registros de saida" rendered="#{epiController.items.rowCount == 0}"/>
+
+                        <h:panelGroup rendered="#{epiController.items.rowCount > 0}">
+
+                            <h:outputText value="#{epiController.pagination.itemsCount} Registros"/>&nbsp;
+
+
+                            <p:dataTable value="#{epiController.items}" 
+                                         id="tbl" 
+                                         paginator="true"  
+                                         rows="10"
+                                         var="item"  
+                                         paginatorTemplate="{CurrentPageReport}
+                                         {FirstPageLink} 
+                                         {PreviousPageLink} 
+                                         {PageLinks} 
+                                         {NextPageLink} 
+                                         {LastPageLink}
+                                         " 
+                                         style="margin-bottom:20px">>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Funcionário"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.funcionario.nmFuncionario}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Descrição Item EPI"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.dsEpi}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Data de Retirada"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.dataRetirada}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Valor"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.valor}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="&nbsp;"/>
+                                    </f:facet>
+                                    <h:commandLink action="#{epiController.prepareView}" value="Visualizar"/>
+                                    <h:outputText value=" "/>
+                                    <h:commandLink action="#{epiController.prepareEdit}" value="Editar"/>
+                                    <h:outputText value=" "/>
+                                    <h:commandLink action="#{epiController.destroy}" value="Excluir"/>
+                                </p:column>
+                            </p:dataTable>
+                            <h:commandLink>
+                                <p:graphicImage  library="image" name="excel.png" width="24"/>
+                                <p:dataExporter type="xls" target="tbl" fileName="Relatorio_EPI" />
+                            </h:commandLink>
+                        </h:panelGroup>
+
+                    </h:form>
+                </p:tab>
+            </p:tabView>
+        </ui:define>
+    </ui:composition>
+
+</html>

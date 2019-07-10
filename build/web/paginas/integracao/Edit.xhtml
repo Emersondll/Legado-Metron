@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="top">Editar Integração</ui:define>
+
+        <ui:define name="body">
+            <h:form>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <p:outputLabel value="#{bundle.EditIntegracaoLabel_dtInicio}" for="dtInicio" />
+                    <p:calendar pattern="dd/MM/yyyy" mask="true" style="text-transform: uppercase"  id="dtInicio" value="#{integracaoController.selected.dtInicio}" title="#{bundle.EditIntegracaoTitle_dtInicio}" />
+ 
+
+                    <p:outputLabel value="#{bundle.EditIntegracaoLabel_dtFim}" for="dtFim" />
+                    <p:calendar pattern="dd/MM/yyyy" mask="true" style="text-transform: uppercase"  id="dtFim" value="#{integracaoController.selected.dtFim}" title="#{bundle.EditIntegracaoTitle_dtFim}" />
+
+
+                    <p:outputLabel value="#{bundle.EditIntegracaoLabel_empresaIntegracao}" for="empresaIntegracao" />
+                    <p:inputText style="text-transform: uppercase"  id="empresaIntegracao" value="#{integracaoController.selected.empresaIntegracao}" title="#{bundle.EditIntegracaoTitle_empresaIntegracao}" />
+
+                    <p:outputLabel value="#{bundle.EditIntegracaoLabel_cpfFuncionario}" for="cpfFuncionario" />
+                    <p:selectOneMenu id="cpfFuncionario" 
+                                     value="#{integracaoController.selected.cpfFuncionario}" 
+                                     required="true" 
+                                     style="width:170px"
+                                     filter="true"
+                                     >
+                        <f:selectItems value="#{funcionarioController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+                </h:panelGrid>
+                <br></br>
+                <br></br>
+                <p:splitButton id= "Save" action="#{integracaoController.update}" value="#{bundle.EditIntegracaoSaveLink}" icon="ui-icon-disk" ajax="false" update="growl" >
+                    <p:separator></p:separator>
+                    <p:menuitem id= "exibirtodos" action="#{integracaoController.prepareList}" value="#{bundle.EditIntegracaoShowAllLink}" immediate="true" icon="ui-icon-document" ajax="false" update="growl"  />
+                    <p:menuitem id= "vieweste" outcome="View" value="#{bundle.EditIntegracaoViewLink}" icon="ui-icon-refresh" ajax="false" update="growl"  />
+                </p:splitButton>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
