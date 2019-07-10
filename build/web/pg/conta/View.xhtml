@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewContaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewContaLabel_conta}"/>
+                    <h:outputText value="#{contaController.selected.conta}" title="#{bundle.ViewContaTitle_conta}"/>
+                    <h:outputText value="#{bundle.ViewContaLabel_banco}"/>
+                    <h:outputText value="#{contaController.selected.banco}" title="#{bundle.ViewContaTitle_banco}"/>
+                    <h:outputText value="#{bundle.ViewContaLabel_agencia}"/>
+                    <h:outputText value="#{contaController.selected.agencia}" title="#{bundle.ViewContaTitle_agencia}"/>
+                    <h:outputText value="#{bundle.ViewContaLabel_status}"/>
+                    <h:outputText value="#{contaController.selected.status}" title="#{bundle.ViewContaTitle_status}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{contaController.destroyAndView}" value="#{bundle.ViewContaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewContaEditLink}"/>
+                <br />
+                <h:commandLink action="#{contaController.prepareCreate}" value="#{bundle.ViewContaCreateLink}" />
+                <br />
+                <h:commandLink action="#{contaController.prepareList}" value="#{bundle.ViewContaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewContaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

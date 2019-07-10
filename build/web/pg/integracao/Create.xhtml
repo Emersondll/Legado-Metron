@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateIntegracaoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateIntegracaoLabel_idIntegracao}" for="idIntegracao" />
+                    <h:inputText id="idIntegracao" value="#{integracaoController.selected.idIntegracao}" title="#{bundle.CreateIntegracaoTitle_idIntegracao}" required="true" requiredMessage="#{bundle.CreateIntegracaoRequiredMessage_idIntegracao}"/>
+                    <h:outputLabel value="#{bundle.CreateIntegracaoLabel_dtInicio}" for="dtInicio" />
+                    <h:inputText id="dtInicio" value="#{integracaoController.selected.dtInicio}" title="#{bundle.CreateIntegracaoTitle_dtInicio}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateIntegracaoLabel_dtFim}" for="dtFim" />
+                    <h:inputText id="dtFim" value="#{integracaoController.selected.dtFim}" title="#{bundle.CreateIntegracaoTitle_dtFim}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateIntegracaoLabel_empresaIntegracao}" for="empresaIntegracao" />
+                    <h:inputText id="empresaIntegracao" value="#{integracaoController.selected.empresaIntegracao}" title="#{bundle.CreateIntegracaoTitle_empresaIntegracao}" />
+                    <h:outputLabel value="#{bundle.CreateIntegracaoLabel_cpfFuncionario}" for="cpfFuncionario" />
+                    <h:selectOneMenu id="cpfFuncionario" value="#{integracaoController.selected.cpfFuncionario}" title="#{bundle.CreateIntegracaoTitle_cpfFuncionario}" >
+                        <f:selectItems value="#{funcionarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{integracaoController.create}" value="#{bundle.CreateIntegracaoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{integracaoController.prepareList}" value="#{bundle.CreateIntegracaoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateIntegracaoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

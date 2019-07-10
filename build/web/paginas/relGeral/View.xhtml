@@ -1,0 +1,50 @@
+<!--<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewRelGeralTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewRelGeralLabel_cliente}"/>
+                    <h:outputText value="#{relGeralController.selected.cliente}" title="#{bundle.ViewRelGeralTitle_cliente}"/>
+                    <h:outputText value="#{bundle.ViewRelGeralLabel_obra}"/>
+                    <h:outputText value="#{relGeralController.selected.obra}" title="#{bundle.ViewRelGeralTitle_obra}"/>
+                    <h:outputText value="#{bundle.ViewRelGeralLabel_statusObra}"/>
+                    <h:outputText value="#{relGeralController.selected.statusObra}" title="#{bundle.ViewRelGeralTitle_statusObra}"/>
+                    <h:outputText value="#{bundle.ViewRelGeralLabel_totalServicos}"/>
+                    <h:outputText value="#{relGeralController.selected.totalServicos}" title="#{bundle.ViewRelGeralTitle_totalServicos}"/>
+                    <h:outputText value="#{bundle.ViewRelGeralLabel_totalDespesas}"/>
+                    <h:outputText value="#{relGeralController.selected.totalDespesas}" title="#{bundle.ViewRelGeralTitle_totalDespesas}"/>
+                    <h:outputText value="#{bundle.ViewRelGeralLabel_totalPago}"/>
+                    <h:outputText value="#{relGeralController.selected.totalPago}" title="#{bundle.ViewRelGeralTitle_totalPago}"/>
+                    <h:outputText value="#{bundle.ViewRelGeralLabel_totalGeral}"/>
+                    <h:outputText value="#{relGeralController.selected.totalGeral}" title="#{bundle.ViewRelGeralTitle_totalGeral}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{relGeralController.destroyAndView}" value="#{bundle.ViewRelGeralDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewRelGeralEditLink}"/>
+                <br />
+                <h:commandLink action="#{relGeralController.prepareCreate}" value="#{bundle.ViewRelGeralCreateLink}" />
+                <br />
+                <h:commandLink action="#{relGeralController.prepareList}" value="#{bundle.ViewRelGeralShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewRelGeralIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>-->

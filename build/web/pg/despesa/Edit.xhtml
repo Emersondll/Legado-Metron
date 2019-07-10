@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditDespesaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditDespesaLabel_cdDespesa}" for="cdDespesa" />
+                    <h:inputText id="cdDespesa" value="#{despesaController.selected.cdDespesa}" title="#{bundle.EditDespesaTitle_cdDespesa}" required="true" requiredMessage="#{bundle.EditDespesaRequiredMessage_cdDespesa}"/>
+                    <h:outputLabel value="#{bundle.EditDespesaLabel_dsDespesa}" for="dsDespesa" />
+                    <h:inputText id="dsDespesa" value="#{despesaController.selected.dsDespesa}" title="#{bundle.EditDespesaTitle_dsDespesa}" required="true" requiredMessage="#{bundle.EditDespesaRequiredMessage_dsDespesa}"/>
+                    <h:outputLabel value="#{bundle.EditDespesaLabel_vlPadrao}" for="vlPadrao" />
+                    <h:inputText id="vlPadrao" value="#{despesaController.selected.vlPadrao}" title="#{bundle.EditDespesaTitle_vlPadrao}" />
+                </h:panelGrid>
+                <h:commandLink action="#{despesaController.update}" value="#{bundle.EditDespesaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditDespesaViewLink}"/>
+                <br />
+                <h:commandLink action="#{despesaController.prepareList}" value="#{bundle.EditDespesaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditDespesaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditClienteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditClienteLabel_cdCliente}" for="cdCliente" />
+                    <h:inputText id="cdCliente" value="#{clienteController.selected.cdCliente}" title="#{bundle.EditClienteTitle_cdCliente}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_cdCliente}"/>
+                    <h:outputLabel value="#{bundle.EditClienteLabel_nmCliente}" for="nmCliente" />
+                    <h:inputText id="nmCliente" value="#{clienteController.selected.nmCliente}" title="#{bundle.EditClienteTitle_nmCliente}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_nmCliente}"/>
+                    <h:outputLabel value="#{bundle.EditClienteLabel_endereco}" for="endereco" />
+                    <h:inputText id="endereco" value="#{clienteController.selected.endereco}" title="#{bundle.EditClienteTitle_endereco}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_bairro}" for="bairro" />
+                    <h:inputText id="bairro" value="#{clienteController.selected.bairro}" title="#{bundle.EditClienteTitle_bairro}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_cidade}" for="cidade" />
+                    <h:inputText id="cidade" value="#{clienteController.selected.cidade}" title="#{bundle.EditClienteTitle_cidade}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_uf}" for="uf" />
+                    <h:inputText id="uf" value="#{clienteController.selected.uf}" title="#{bundle.EditClienteTitle_uf}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_foneComercial}" for="foneComercial" />
+                    <h:inputText id="foneComercial" value="#{clienteController.selected.foneComercial}" title="#{bundle.EditClienteTitle_foneComercial}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_foneResidencial}" for="foneResidencial" />
+                    <h:inputText id="foneResidencial" value="#{clienteController.selected.foneResidencial}" title="#{bundle.EditClienteTitle_foneResidencial}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_celular}" for="celular" />
+                    <h:inputText id="celular" value="#{clienteController.selected.celular}" title="#{bundle.EditClienteTitle_celular}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_tpPessoa}" for="tpPessoa" />
+                    <h:inputText id="tpPessoa" value="#{clienteController.selected.tpPessoa}" title="#{bundle.EditClienteTitle_tpPessoa}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_cpfCnpj}" for="cpfCnpj" />
+                    <h:inputText id="cpfCnpj" value="#{clienteController.selected.cpfCnpj}" title="#{bundle.EditClienteTitle_cpfCnpj}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_rgInsc}" for="rgInsc" />
+                    <h:inputText id="rgInsc" value="#{clienteController.selected.rgInsc}" title="#{bundle.EditClienteTitle_rgInsc}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{clienteController.selected.email}" title="#{bundle.EditClienteTitle_email}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_observacao}" for="observacao" />
+                    <h:inputText id="observacao" value="#{clienteController.selected.observacao}" title="#{bundle.EditClienteTitle_observacao}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_cep}" for="cep" />
+                    <h:inputText id="cep" value="#{clienteController.selected.cep}" title="#{bundle.EditClienteTitle_cep}" />
+                </h:panelGrid>
+                <h:commandLink action="#{clienteController.update}" value="#{bundle.EditClienteSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditClienteViewLink}"/>
+                <br />
+                <h:commandLink action="#{clienteController.prepareList}" value="#{bundle.EditClienteShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditClienteIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

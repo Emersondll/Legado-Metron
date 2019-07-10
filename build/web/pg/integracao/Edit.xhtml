@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditIntegracaoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditIntegracaoLabel_idIntegracao}" for="idIntegracao" />
+                    <h:inputText id="idIntegracao" value="#{integracaoController.selected.idIntegracao}" title="#{bundle.EditIntegracaoTitle_idIntegracao}" required="true" requiredMessage="#{bundle.EditIntegracaoRequiredMessage_idIntegracao}"/>
+                    <h:outputLabel value="#{bundle.EditIntegracaoLabel_dtInicio}" for="dtInicio" />
+                    <h:inputText id="dtInicio" value="#{integracaoController.selected.dtInicio}" title="#{bundle.EditIntegracaoTitle_dtInicio}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditIntegracaoLabel_dtFim}" for="dtFim" />
+                    <h:inputText id="dtFim" value="#{integracaoController.selected.dtFim}" title="#{bundle.EditIntegracaoTitle_dtFim}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditIntegracaoLabel_empresaIntegracao}" for="empresaIntegracao" />
+                    <h:inputText id="empresaIntegracao" value="#{integracaoController.selected.empresaIntegracao}" title="#{bundle.EditIntegracaoTitle_empresaIntegracao}" />
+                    <h:outputLabel value="#{bundle.EditIntegracaoLabel_cpfFuncionario}" for="cpfFuncionario" />
+                    <h:selectOneMenu id="cpfFuncionario" value="#{integracaoController.selected.cpfFuncionario}" title="#{bundle.EditIntegracaoTitle_cpfFuncionario}" >
+                        <f:selectItems value="#{funcionarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{integracaoController.update}" value="#{bundle.EditIntegracaoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditIntegracaoViewLink}"/>
+                <br />
+                <h:commandLink action="#{integracaoController.prepareList}" value="#{bundle.EditIntegracaoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditIntegracaoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

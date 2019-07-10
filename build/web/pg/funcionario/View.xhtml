@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewFuncionarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewFuncionarioLabel_cpf}"/>
+                    <h:outputText value="#{funcionarioController.selected.cpf}" title="#{bundle.ViewFuncionarioTitle_cpf}"/>
+                    <h:outputText value="#{bundle.ViewFuncionarioLabel_nmFuncionario}"/>
+                    <h:outputText value="#{funcionarioController.selected.nmFuncionario}" title="#{bundle.ViewFuncionarioTitle_nmFuncionario}"/>
+                    <h:outputText value="#{bundle.ViewFuncionarioLabel_apelido}"/>
+                    <h:outputText value="#{funcionarioController.selected.apelido}" title="#{bundle.ViewFuncionarioTitle_apelido}"/>
+                    <h:outputText value="#{bundle.ViewFuncionarioLabel_rg}"/>
+                    <h:outputText value="#{funcionarioController.selected.rg}" title="#{bundle.ViewFuncionarioTitle_rg}"/>
+                    <h:outputText value="#{bundle.ViewFuncionarioLabel_ctps}"/>
+                    <h:outputText value="#{funcionarioController.selected.ctps}" title="#{bundle.ViewFuncionarioTitle_ctps}"/>
+                    <h:outputText value="#{bundle.ViewFuncionarioLabel_pisPasep}"/>
+                    <h:outputText value="#{funcionarioController.selected.pisPasep}" title="#{bundle.ViewFuncionarioTitle_pisPasep}"/>
+                    <h:outputText value="#{bundle.ViewFuncionarioLabel_cnh}"/>
+                    <h:outputText value="#{funcionarioController.selected.cnh}" title="#{bundle.ViewFuncionarioTitle_cnh}"/>
+                    <h:outputText value="#{bundle.ViewFuncionarioLabel_endereco}"/>
+                    <h:outputText value="#{funcionarioController.selected.endereco}" title="#{bundle.ViewFuncionarioTitle_endereco}"/>
+                    <h:outputText value="#{bundle.ViewFuncionarioLabel_bairro}"/>
+                    <h:outputText value="#{funcionarioController.selected.bairro}" title="#{bundle.ViewFuncionarioTitle_bairro}"/>
+                    <h:outputText value="#{bundle.ViewFuncionarioLabel_cep}"/>
+                    <h:outputText value="#{funcionarioController.selected.cep}" title="#{bundle.ViewFuncionarioTitle_cep}"/>
+                    <h:outputText value="#{bundle.ViewFuncionarioLabel_cidade}"/>
+                    <h:outputText value="#{funcionarioController.selected.cidade}" title="#{bundle.ViewFuncionarioTitle_cidade}"/>
+                    <h:outputText value="#{bundle.ViewFuncionarioLabel_uf}"/>
+                    <h:outputText value="#{funcionarioController.selected.uf}" title="#{bundle.ViewFuncionarioTitle_uf}"/>
+                    <h:outputText value="#{bundle.ViewFuncionarioLabel_banco}"/>
+                    <h:outputText value="#{funcionarioController.selected.banco}" title="#{bundle.ViewFuncionarioTitle_banco}"/>
+                    <h:outputText value="#{bundle.ViewFuncionarioLabel_agencia}"/>
+                    <h:outputText value="#{funcionarioController.selected.agencia}" title="#{bundle.ViewFuncionarioTitle_agencia}"/>
+                    <h:outputText value="#{bundle.ViewFuncionarioLabel_conta}"/>
+                    <h:outputText value="#{funcionarioController.selected.conta}" title="#{bundle.ViewFuncionarioTitle_conta}"/>
+                    <h:outputText value="#{bundle.ViewFuncionarioLabel_foneResid}"/>
+                    <h:outputText value="#{funcionarioController.selected.foneResid}" title="#{bundle.ViewFuncionarioTitle_foneResid}"/>
+                    <h:outputText value="#{bundle.ViewFuncionarioLabel_celular1}"/>
+                    <h:outputText value="#{funcionarioController.selected.celular1}" title="#{bundle.ViewFuncionarioTitle_celular1}"/>
+                    <h:outputText value="#{bundle.ViewFuncionarioLabel_dtAdmissao}"/>
+                    <h:outputText value="#{funcionarioController.selected.dtAdmissao}" title="#{bundle.ViewFuncionarioTitle_dtAdmissao}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewFuncionarioLabel_dtDemissao}"/>
+                    <h:outputText value="#{funcionarioController.selected.dtDemissao}" title="#{bundle.ViewFuncionarioTitle_dtDemissao}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewFuncionarioLabel_asoDtInicio}"/>
+                    <h:outputText value="#{funcionarioController.selected.asoDtInicio}" title="#{bundle.ViewFuncionarioTitle_asoDtInicio}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewFuncionarioLabel_asoDtFim}"/>
+                    <h:outputText value="#{funcionarioController.selected.asoDtFim}" title="#{bundle.ViewFuncionarioTitle_asoDtFim}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewFuncionarioLabel_observacao}"/>
+                    <h:outputText value="#{funcionarioController.selected.observacao}" title="#{bundle.ViewFuncionarioTitle_observacao}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{funcionarioController.destroyAndView}" value="#{bundle.ViewFuncionarioDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewFuncionarioEditLink}"/>
+                <br />
+                <h:commandLink action="#{funcionarioController.prepareCreate}" value="#{bundle.ViewFuncionarioCreateLink}" />
+                <br />
+                <h:commandLink action="#{funcionarioController.prepareList}" value="#{bundle.ViewFuncionarioShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewFuncionarioIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

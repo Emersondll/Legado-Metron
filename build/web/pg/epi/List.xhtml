@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListEpiTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListEpiEmpty}" rendered="#{epiController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{epiController.items.rowCount > 0}">
+                    <h:outputText value="#{epiController.pagination.pageFirstItem + 1}..#{epiController.pagination.pageLastItem + 1}/#{epiController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{epiController.previous}" value="#{bundle.Previous} #{epiController.pagination.pageSize}" rendered="#{epiController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{epiController.next}" value="#{bundle.Next} #{epiController.pagination.pageSize}" rendered="#{epiController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{epiController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEpiTitle_idEpi}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idEpi}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEpiTitle_dsEpi}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dsEpi}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEpiTitle_valor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEpiTitle_dataRetirada}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dataRetirada}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEpiTitle_funcionario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.funcionario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{epiController.prepareView}" value="#{bundle.ListEpiViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{epiController.prepareEdit}" value="#{bundle.ListEpiEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{epiController.destroy}" value="#{bundle.ListEpiDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{epiController.prepareCreate}" value="#{bundle.ListEpiCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListEpiIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

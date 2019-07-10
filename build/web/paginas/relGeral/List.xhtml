@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="top">Relatório Geral</ui:define>
+
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListRelGeralEmpty}" rendered="#{relGeralController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{relGeralController.items.rowCount > 0}">
+                    <h:outputText value="#{relGeralController.pagination.itemsCount} Registros"/>&nbsp;
+                    <p:dataTable value="#{relGeralController.items}"
+                                 id="tbl" 
+                                 paginator="true"  
+                                 rows="10" 
+                                 var="item"  
+                                 paginatorTemplate="{CurrentPageReport}
+                                 {FirstPageLink} 
+                                 {PreviousPageLink} 
+                                 {PageLinks} 
+                                 {NextPageLink} 
+                                 {LastPageLink}
+                                 " 
+                                 style="margin-bottom:20px" >
+                        <p:column  filterBy="#{item.cliente}" width="130">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRelGeralTitle_cliente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cliente}" style="text-transform: uppercase"/>
+                        </p:column>
+                        
+                        <p:column filterBy="#{item.obra}" width="130">
+                            <f:facet name="header" >
+                                <h:outputText value="#{bundle.ListRelGeralTitle_obra}" />
+                            </f:facet>
+                            <h:outputText value="#{item.obra}" style="text-transform: uppercase"/>
+                        </p:column>
+                        
+                        <p:column filterBy="#{item.statusObra}" width="130">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRelGeralTitle_statusObra}" />
+                            </f:facet>
+                            <h:outputText value="#{item.statusObra}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRelGeralTitle_totalServicos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.totalServicos}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRelGeralTitle_totalDespesas}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.totalDespesas}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRelGeralTitle_totalPago}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.totalPago}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRelGeralTitle_totalGeral}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.totalGeral}"/>
+                        </p:column>
+                    </p:dataTable>
+
+
+                    <h:commandLink>
+                        <p:graphicImage  library="image" name="excel.png" width="24"/>
+                        <p:dataExporter type="xls" target="tbl" fileName="Relatorio_Geral" />
+                    </h:commandLink>
+                    
+                </h:panelGroup>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
