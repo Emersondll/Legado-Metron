@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="top">Cadastro de Despesas</ui:define>
+
+        <ui:define name="body">
+
+            <p:tabView>
+                <p:tab title="Cadastro">
+                    <h:form>
+                        <h:panelGrid columns="2" cellpadding="5">
+
+                            <p:outputLabel value="#{bundle.CreateDespesaLabel_dsDespesa}" for="dsDespesa" />
+                            <p:inputText style="text-transform: uppercase" id="dsDespesa" value="#{despesaController.selected.dsDespesa}" title="#{bundle.CreateDespesaTitle_dsDespesa}" required="true" requiredMessage="#{bundle.CreateDespesaRequiredMessage_dsDespesa}"/>
+
+                            <p:outputLabel value="#{bundle.CreateDespesaLabel_vlPadrao}" for="vlPadrao" />
+                            <p:inputText style="text-transform: uppercase" id="vlPadrao" value="#{despesaController.selected.vlPadrao}" title="#{bundle.CreateDespesaTitle_vlPadrao}" />
+                        </h:panelGrid>
+                        <br></br>
+                        <br></br>
+                        <p:splitButton id= "Save" action="#{despesaController.create}" value="#{bundle.CreateDespesaSaveLink}" icon="ui-icon-disk" ajax="false" update="growl" >
+                            <p:separator></p:separator>
+                            <p:menuitem id= "exibir" action="#{despesaController.prepareList}" value="#{bundle.CreateDespesaShowAllLink}" immediate="true" icon="ui-icon-document" ajax="false" update="growl"  />
+                            <p:menuitem id= "limpa" value="Limpar campos"  process="@this" actionListener="#{despesaController.resetFail()}" icon="ui-icon-refresh" ajax="false" update="growl"  />
+                        </p:splitButton>
+
+                    </h:form>
+                </p:tab>
+                <p:tab title="Lista Cadastro">
+                    <h:form styleClass="jsfcrud_list_form">
+                        <h:panelGroup id="messagePanel" layout="block">
+                            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                        </h:panelGroup>
+                        <h:outputText escape="false" value="#{bundle.ListDespesaEmpty}" rendered="#{despesaController.items.rowCount == 0}"/>
+                        <h:panelGroup rendered="#{despesaController.items.rowCount > 0}">
+                            <h:outputText value="#{despesaController.pagination.itemsCount} Registros"/>&nbsp;
+                            <p:dataTable value="#{despesaController.items}" 
+                                         id="tbl" 
+                                         paginator="true"  
+                                         rows="10"
+                                         var="item"  
+                                         paginatorTemplate="{CurrentPageReport}
+                                         {FirstPageLink} 
+                                         {PreviousPageLink} 
+                                         {PageLinks} 
+                                         {NextPageLink} 
+                                         {LastPageLink}
+                                         " 
+                                         style="margin-bottom:20px">
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListDespesaTitle_cdDespesa}"/>
+                                    </f:facet>
+                                    <h:outputText style="text-transform: uppercase" value="#{item.cdDespesa}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListDespesaTitle_dsDespesa}"/>
+                                    </f:facet>
+                                    <h:outputText style="text-transform: uppercase" value="#{item.dsDespesa}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListDespesaTitle_vlPadrao}"/>
+                                    </f:facet>
+                                    <h:outputText style="text-transform: uppercase" value="#{item.vlPadrao}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="&nbsp;"/>
+                                    </f:facet>
+                                    <h:commandLink action="#{despesaController.prepareView}" value="#{bundle.ListDespesaViewLink}"/>
+                                    <h:outputText value=" "/>
+                                    <h:commandLink action="#{despesaController.prepareEdit}" value="#{bundle.ListDespesaEditLink}"/>
+                                    <h:outputText value=" "/>
+                                    <h:commandLink action="#{despesaController.destroy}" value="#{bundle.ListDespesaDestroyLink}"/>
+                                </p:column>
+                            </p:dataTable>
+                            <h:commandLink>
+                                <p:graphicImage  library="image" name="excel.png" width="24"/>
+                                <p:dataExporter type="xls" target="tbl" fileName="Relatorio_Despesas_Cadastradas" />
+                            </h:commandLink>
+                        </h:panelGroup>
+
+                    </h:form>
+                </p:tab>
+            </p:tabView>
+        </ui:define>
+    </ui:composition>
+
+</html>

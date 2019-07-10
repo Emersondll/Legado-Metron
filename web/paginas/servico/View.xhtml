@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="top">Dados do Serviço Cadastrado</ui:define>
+
+        <ui:define name="body">
+
+            <h:form>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <p:outputLabel value="#{bundle.ViewServicoLabel_cdServico}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{servicoController.selected.cdServico}" title="#{bundle.ViewServicoTitle_cdServico}"/>
+
+                    <p:outputLabel value="#{bundle.ViewServicoLabel_descServico}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{servicoController.selected.descServico}" title="#{bundle.ViewServicoTitle_descServico}"/>
+
+                    <p:outputLabel value="#{bundle.ViewServicoLabel_tpServico}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{servicoController.selected.tpServico}" title="#{bundle.ViewServicoTitle_tpServico}"/>
+
+                    <p:outputLabel value="#{bundle.ViewServicoLabel_tpObra}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{servicoController.selected.tpObra}" title="#{bundle.ViewServicoTitle_tpObra}"/>
+
+                    <p:outputLabel value="#{bundle.ViewServicoLabel_vlPadrao}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{servicoController.selected.vlPadrao}" title="#{bundle.ViewServicoTitle_vlPadrao}"/>
+
+                    <p:outputLabel value="#{bundle.ViewServicoLabel_tpCobranca}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{servicoController.selected.tpCobranca}" title="#{bundle.ViewServicoTitle_tpCobranca}"/>
+
+                    <p:outputLabel value="#{bundle.ViewServicoLabel_idFalta}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{servicoController.selected.idFalta}" title="#{bundle.ViewServicoTitle_idFalta}"/>
+                </h:panelGrid>
+                <br></br>
+                <br></br>
+                <p:splitButton id= "edit" value="Ações" icon="ui-icon-arrow-4-diag" ajax="false" update="growl" >
+                    <p:separator></p:separator>
+
+                    <p:menuitem outcome="Edit" value="#{bundle.ViewServicoEditLink}" icon="ui-icon-pencil" ajax="false" update="grid"  />
+                    <p:separator></p:separator>
+                    <p:menuitem  action="#{servicoController.prepareCreate}" value="#{bundle.ViewServicoCreateLink}"  icon="ui-icon-document-b" ajax="false" update="grid"  />    
+                    <p:separator></p:separator>
+                    <p:menuitem action="#{servicoController.prepareList}" value="#{bundle.ViewServicoShowAllLink}" icon="ui-icon-script" ajax="false" update="grid"  />    
+                    <p:separator></p:separator>
+                    <p:menuitem action="#{servicoController.destroyAndView}" value="#{bundle.ViewServicoDestroyLink}" icon="ui-icon-trash" ajax="false" update="grid"  />
+                </p:splitButton>
+
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="top">Lista de Integrações</ui:define>
+
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListIntegracaoEmpty}" rendered="#{integracaoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{integracaoController.items.rowCount > 0}">
+                    <h:outputText value="#{integracaoController.pagination.itemsCount} Registros"/>&nbsp;
+                    <p:dataTable value="#{integracaoController.items}" 
+                                 id="tbl" 
+                                 paginator="true"  
+                                 rows="10"
+                                 var="item"  
+                                 paginatorTemplate="{CurrentPageReport}
+                                 {FirstPageLink} 
+                                 {PreviousPageLink} 
+                                 {PageLinks} 
+                                 {NextPageLink} 
+                                 {LastPageLink}
+                                 " 
+                                 style="margin-bottom:20px">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListIntegracaoTitle_idIntegracao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idIntegracao}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListIntegracaoTitle_dtInicio}"/>
+                            </f:facet>
+                            <h:outputText style="text-transform: uppercase" value="#{item.dtInicio}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListIntegracaoTitle_dtFim}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtFim}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column filterBy="#{item.empresaIntegracao}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListIntegracaoTitle_empresaIntegracao}"/>
+                            </f:facet>
+                            <h:outputText style="text-transform: uppercase" value="#{item.empresaIntegracao}"/>
+                        </p:column>
+
+                        <p:column filterBy="#{item.cpfFuncionario.nmFuncionario}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListIntegracaoTitle_cpfFuncionario}"/>
+                            </f:facet>
+                            <h:outputText style="text-transform: uppercase" value="#{item.cpfFuncionario.nmFuncionario}"/>
+                        </p:column>
+                    </p:dataTable>
+                    <h:commandLink>
+                        <p:graphicImage  library="image" name="excel.png" width="24"/>
+                        <p:dataExporter type="xls" target="tbl" fileName="Relatorio_Integracao" />
+                    </h:commandLink>
+                </h:panelGroup>
+                <br />
+                <p:commandButton action="#{integracaoController.prepareCreate}" value="#{bundle.ListIntegracaoCreateLink}"/>
+                <br />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

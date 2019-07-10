@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="top">Lista de Serviço Prestado</ui:define>
+
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListLancServPrestadoEmpty}" rendered="#{lancServPrestadoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{lancServPrestadoController.items.rowCount > 0}">
+                    <h:outputText value="#{lancServPrestadoController.pagination.itemsCount} Registros"/>&nbsp;
+                    <p:dataTable value="#{lancServPrestadoController.items}" 
+                                 id="tbl" 
+                                 paginator="true"  
+                                 rows="10" 
+                                 var="item"  
+                                 paginatorTemplate="{CurrentPageReport}
+                                 {FirstPageLink} 
+                                 {PreviousPageLink} 
+                                 {PageLinks} 
+                                 {NextPageLink} 
+                                 {LastPageLink}
+                                 " 
+                                 style="margin-bottom:20px">       
+
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLancServPrestadoTitle_lancServPrestadoPK_dtServico}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.lancServPrestadoPK.dtServico}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column  filterBy="#{item.funcionario.nmFuncionario}" width="130">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLancServPrestadoTitle_funcionario}"/>
+                            </f:facet>
+                            <h:outputText style="text-transform: uppercase" value="#{item.funcionario.nmFuncionario}" />
+                        </p:column>
+                        <p:column filterBy="#{item.obra.nmObra}" width="130">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLancServPrestadoTitle_obra}"/>
+                            </f:facet>
+                            <h:outputText style="text-transform: uppercase" value="#{item.obra.nmObra}"/>
+                        </p:column>
+
+
+                        <p:column filterBy="#{item.servico.descServico}" width="130">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLancServPrestadoTitle_servico}"/>
+                            </f:facet>
+                            <h:outputText style="text-transform: uppercase" value="#{item.servico.descServico}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.notaFiscal}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLancServPrestadoTitle_notaFiscal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.notaFiscal}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLancServPrestadoTitle_hrSaidaEscritorio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.hrSaidaEscritorio}">
+                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" timeZone="America/Sao_Paulo" />
+                            </h:outputText>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLancServPrestadoTitle_hrInicioServico}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.hrInicioServico}">
+                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" timeZone="America/Sao_Paulo" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLancServPrestadoTitle_hrFimServico}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.hrFimServico}">
+                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" timeZone="America/Sao_Paulo" />
+                            </h:outputText>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLancServPrestadoTitle_hrChegadaEscritorio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.hrChegadaEscritorio}">
+                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" timeZone="America/Sao_Paulo" />
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column filterBy="#{item.cdBem.dsBem}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBemTitle_dsBem}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cdBem.dsBem}"/>
+                        </p:column>
+
+                    </p:dataTable>
+                    <h:commandLink>
+                        <p:graphicImage  library="image" name="excel.png" width="24"/>
+                        <p:dataExporter type="xls" target="tbl" fileName="Relatorio_Servico" />
+                    </h:commandLink>
+                </h:panelGroup>
+                <br />
+                <p:commandButton action="#{lancServPrestadoController.prepareCreate}" value="#{bundle.ListLancServPrestadoCreateLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

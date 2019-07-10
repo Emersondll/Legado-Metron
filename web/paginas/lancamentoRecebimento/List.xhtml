@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="top">Lista de Lançamento de Recebimentos</ui:define>
+
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListLancamentoRecebimentoEmpty}" rendered="#{lancamentoRecebimentoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{lancamentoRecebimentoController.items.rowCount > 0}">
+                    <h:outputText value="#{lancamentoRecebimentoController.pagination.itemsCount} Registros"/>&nbsp;
+                    <p:dataTable value="#{lancamentoRecebimentoController.items}" 
+                                 id="tbl" 
+                                 paginator="true"  
+                                 rows="10" 
+                                 var="item"  
+                                 paginatorTemplate="{CurrentPageReport}
+                                 {FirstPageLink} 
+                                 {PreviousPageLink} 
+                                 {PageLinks} 
+                                 {NextPageLink} 
+                                 {LastPageLink}
+                                 " 
+                                 style="margin-bottom:20px"> 
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLancamentoRecebimentoTitle_idLancamentoRecebimento}"/>
+                            </f:facet>
+                            <h:outputText style="text-transform: uppercase" value="#{item.idLancamentoRecebimento}"/>
+                        </p:column>
+
+                        <p:column filterBy="#{item.cdObra.nmObra}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListObraTitle_nmObra}"/>
+                            </f:facet>
+                            <h:outputText style="text-transform: uppercase" value="#{item.cdObra.nmObra}"/>
+                        </p:column>
+
+                        <p:column filterBy="#{item.cdObra.cdCliente.nmCliente}">
+
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClienteTitle_nmCliente}"/>
+                            </f:facet>
+                            <h:outputText style="text-transform: uppercase" value="#{item.cdObra.cdCliente.nmCliente}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLancamentoRecebimentoTitle_dataPagamento}"/>
+                            </f:facet>
+                            <h:outputText style="text-transform: uppercase" value="#{item.dataPagamento}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLancamentoRecebimentoTitle_valorPago}"/>
+                            </f:facet>
+                            <h:outputText style="text-transform: uppercase" value="#{item.valorPago}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.notaFiscal}">
+
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLancamentoRecebimentoTitle_notaFiscal}"/>
+                            </f:facet>
+                            <h:outputText style="text-transform: uppercase" value="#{item.notaFiscal}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLancamentoRecebimentoTitle_tipoPagamento}"/>
+                            </f:facet>
+                            <h:outputText style="text-transform: uppercase" value="#{item.tipoPagamento}"/>
+                        </p:column>
+
+                        <p:column filterBy="#{item.contaDestino.banco}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListContaTitle_banco}"/>
+                            </f:facet>
+                            <h:outputText style="text-transform: uppercase" value="#{item.contaDestino.banco}"/>
+                        </p:column>
+
+                        <p:column filterBy="#{item.contaDestino}">
+
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLancamentoRecebimentoTitle_contaDestino}"/>
+                            </f:facet>
+                            <h:outputText style="text-transform: uppercase" value="#{item.contaDestino}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLancamentoRecebimentoTitle_observacao}"/>
+                            </f:facet>
+                            <h:outputText style="text-transform: uppercase" value="#{item.observacao}"/>
+                        </p:column>
+                        
+                    </p:dataTable>
+                    <h:commandLink>
+                        <p:graphicImage  library="image" name="excel.png" width="24"/>
+                        <p:dataExporter type="xls" target="tbl" fileName="Relatorio_Lancamento_Recebimentos" />
+                    </h:commandLink>
+                </h:panelGroup>
+                <br />
+                <p:commandButton action="#{lancamentoRecebimentoController.prepareCreate}" value="#{bundle.ListLancamentoRecebimentoCreateLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

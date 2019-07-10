@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="top">Dados do Funcionário</ui:define>
+
+        <ui:define name="body">
+            <h:form>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <p:outputLabel value="#{bundle.ViewFuncionarioLabel_nmFuncionario}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{funcionarioController.selected.nmFuncionario}" title="#{bundle.ViewFuncionarioTitle_nmFuncionario}"/>
+
+                    <p:outputLabel value="#{bundle.ViewFuncionarioLabel_cpf}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{funcionarioController.selected.cpf}" title="#{bundle.ViewFuncionarioTitle_cpf}"/>
+
+                    <p:outputLabel value="#{bundle.ViewFuncionarioLabel_apelido}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{funcionarioController.selected.apelido}" title="#{bundle.ViewFuncionarioTitle_apelido}"/>
+
+                    <p:outputLabel value="#{bundle.ViewFuncionarioLabel_rg}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{funcionarioController.selected.rg}" title="#{bundle.ViewFuncionarioTitle_rg}"/>
+
+                    <p:outputLabel value="#{bundle.ViewFuncionarioLabel_ctps}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{funcionarioController.selected.ctps}" title="#{bundle.ViewFuncionarioTitle_ctps}"/>
+
+                    <p:outputLabel value="#{bundle.ViewFuncionarioLabel_pisPasep}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{funcionarioController.selected.pisPasep}" title="#{bundle.ViewFuncionarioTitle_pisPasep}"/>
+
+                    <p:outputLabel value="#{bundle.ViewFuncionarioLabel_cnh}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{funcionarioController.selected.cnh}" title="#{bundle.ViewFuncionarioTitle_cnh}"/>
+
+                    <p:outputLabel value="#{bundle.ViewFuncionarioLabel_endereco}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{funcionarioController.selected.endereco}" title="#{bundle.ViewFuncionarioTitle_endereco}"/>
+
+                    <p:outputLabel value="#{bundle.ViewFuncionarioLabel_bairro}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{funcionarioController.selected.bairro}" title="#{bundle.ViewFuncionarioTitle_bairro}"/>
+
+                    <p:outputLabel value="#{bundle.ViewFuncionarioLabel_cep}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{funcionarioController.selected.cep}" title="#{bundle.ViewFuncionarioTitle_cep}"/>
+
+                    <p:outputLabel value="#{bundle.ViewFuncionarioLabel_cidade}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{funcionarioController.selected.cidade}" title="#{bundle.ViewFuncionarioTitle_cidade}"/>
+
+                    <p:outputLabel value="#{bundle.ViewFuncionarioLabel_uf}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{funcionarioController.selected.uf}" title="#{bundle.ViewFuncionarioTitle_uf}"/>
+
+                    <p:outputLabel value="#{bundle.ViewFuncionarioLabel_banco}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{funcionarioController.selected.banco}" title="#{bundle.ViewFuncionarioTitle_banco}"/>
+
+                    <p:outputLabel value="#{bundle.ViewFuncionarioLabel_agencia}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{funcionarioController.selected.agencia}" title="#{bundle.ViewFuncionarioTitle_agencia}"/>
+
+                    <p:outputLabel value="#{bundle.ViewFuncionarioLabel_conta}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{funcionarioController.selected.conta}" title="#{bundle.ViewFuncionarioTitle_conta}"/>
+
+                    <p:outputLabel value="#{bundle.ViewFuncionarioLabel_foneResid}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{funcionarioController.selected.foneResid}" title="#{bundle.ViewFuncionarioTitle_foneResid}"/>
+
+                    <p:outputLabel value="#{bundle.ViewFuncionarioLabel_celular1}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{funcionarioController.selected.celular1}" title="#{bundle.ViewFuncionarioTitle_celular1}"/>
+
+                    <p:outputLabel value="#{bundle.ViewFuncionarioLabel_dtAdmissao}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{funcionarioController.selected.dtAdmissao}" title="#{bundle.ViewFuncionarioTitle_dtAdmissao}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </p:outputLabel>
+
+                    <p:outputLabel value="#{bundle.ViewFuncionarioLabel_dtDemissao}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{funcionarioController.selected.dtDemissao}" title="#{bundle.ViewFuncionarioTitle_dtDemissao}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </p:outputLabel>
+
+                    <p:outputLabel value="#{bundle.ViewFuncionarioLabel_asoDtInicio}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{funcionarioController.selected.asoDtInicio}" title="#{bundle.ViewFuncionarioTitle_asoDtInicio}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </p:outputLabel>
+
+                    <p:outputLabel value="#{bundle.ViewFuncionarioLabel_asoDtFim}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{funcionarioController.selected.asoDtFim}" title="#{bundle.ViewFuncionarioTitle_asoDtFim}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </p:outputLabel>
+
+                    <p:outputLabel value="#{bundle.ViewFuncionarioLabel_observacao}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{funcionarioController.selected.observacao}" title="#{bundle.ViewFuncionarioTitle_observacao}"/>
+                </h:panelGrid>
+                <br></br>
+                <br></br>
+                <p:splitButton id= "edit" value="Ações" icon="ui-icon-arrow-4-diag" ajax="false" update="growl" >
+                    <p:separator></p:separator>
+                    <p:menuitem outcome="Edit" value="#{bundle.ViewFuncionarioEditLink}" icon="ui-icon-pencil" ajax="false" update="growl"  />
+                    <p:separator></p:separator>
+                    <p:menuitem action="#{funcionarioController.prepareCreate}" value="#{bundle.ViewFuncionarioCreateLink}" icon="ui-icon-document-b" ajax="false" update="growl"  />    
+                    <p:separator></p:separator>
+                    <p:menuitem action="#{funcionarioController.prepareList}" value="#{bundle.ViewFuncionarioShowAllLink}" icon="ui-icon-script" ajax="false" update="growl"  />    
+                    <p:separator></p:separator>
+                    <p:menuitem action="#{funcionarioController.destroyAndView}" value="#{bundle.ViewFuncionarioDestroyLink}" icon="ui-icon-trash" ajax="false" update="growl"  />
+                </p:splitButton>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

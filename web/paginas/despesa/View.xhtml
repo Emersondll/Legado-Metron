@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="top">Dados das Despesas</ui:define>
+
+        <ui:define name="body">
+            <h:form>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <p:outputLabel value="#{bundle.ViewDespesaLabel_cdDespesa}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{despesaController.selected.cdDespesa}" title="#{bundle.ViewDespesaTitle_cdDespesa}"/>
+
+                    <p:outputLabel value="#{bundle.ViewDespesaLabel_dsDespesa}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{despesaController.selected.dsDespesa}" title="#{bundle.ViewDespesaTitle_dsDespesa}"/>
+
+                    <p:outputLabel value="#{bundle.ViewDespesaLabel_vlPadrao}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{despesaController.selected.vlPadrao}" title="#{bundle.ViewDespesaTitle_vlPadrao}"/>
+                </h:panelGrid>
+                <br></br>
+                <br></br>
+                <p:splitButton id= "edit" value="Ações" icon="ui-icon-arrow-4-diag" ajax="false" update="growl" >
+                    <p:separator></p:separator>
+
+                    <p:menuitem outcome="Edit" value="#{bundle.ViewDespesaEditLink}" icon="ui-icon-pencil" ajax="false" update="growl"  />
+                    <p:separator></p:separator>
+                    <p:menuitem action="#{despesaController.prepareCreate}" value="#{bundle.ViewDespesaCreateLink}" icon="ui-icon-document-b" ajax="false" update="growl"  />    
+                    <p:separator></p:separator>
+                    <p:menuitem action="#{despesaController.prepareList}" value="#{bundle.ViewDespesaShowAllLink}" icon="ui-icon-script" ajax="false" update="growl"  />    
+                    <p:separator></p:separator>
+                    <p:menuitem action="#{despesaController.destroyAndView}" value="#{bundle.ViewDespesaDestroyLink}" icon="ui-icon-trash" ajax="false" update="growl"  />
+                </p:splitButton>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

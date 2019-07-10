@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="top">Relatório Saidas de EPI </ui:define>
+
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+
+                <h:outputText escape="false" value="Sem registros de saida" rendered="#{epiController.items.rowCount == 0}"/>
+
+                <h:panelGroup rendered="#{epiController.items.rowCount > 0}">
+
+                    <h:outputText value="#{epiController.pagination.itemsCount} Registros"/>&nbsp;
+
+
+                    <p:dataTable value="#{epiController.items}" 
+                                 id="tbl" 
+                                 paginator="true"  
+                                 rows="10"
+                                 var="item"  
+                                 paginatorTemplate="{CurrentPageReport}
+                                 {FirstPageLink} 
+                                 {PreviousPageLink} 
+                                 {PageLinks} 
+                                 {NextPageLink} 
+                                 {LastPageLink}
+                                 " 
+                                 style="margin-bottom:20px">>
+
+                        <p:column filterBy="#{item.funcionario.nmFuncionario}">
+                            <f:facet name="header">
+                                <h:outputText value="Funcionário"/>
+                            </f:facet>
+                            <h:outputText value="#{item.funcionario.nmFuncionario}"/>
+                        </p:column>
+
+                        <p:column filterBy="#{item.dsEpi}">
+                            <f:facet name="header">
+                                <h:outputText value="Descrição Item EPI"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dsEpi}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Data de Retirada"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dataRetirada}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Valor"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valor}"/>
+                        </p:column>
+
+                    </p:dataTable>
+                    <h:commandLink>
+                        <p:graphicImage  library="image" name="excel.png" width="24"/>
+                        <p:dataExporter type="xls" target="tbl" fileName="Relatorio_EPI" />
+                    </h:commandLink>
+                </h:panelGroup>
+                <br />
+                <p:commandButton action="#{epiController.prepareCreate}" value="Criar nova saida EPI"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="top">Dados do Recebimento</ui:define>
+
+        <ui:define name="body">
+
+            <h:form>
+                <h:panelGrid columns="2" cellpadding="5">
+
+                    <p:outputLabel value="#{bundle.ViewLancamentoRecebimentoLabel_idLancamentoRecebimento}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{lancamentoRecebimentoController.selected.idLancamentoRecebimento}" title="#{bundle.ViewLancamentoRecebimentoTitle_idLancamentoRecebimento}"/>
+
+                    <p:outputLabel value="#{bundle.ViewLancamentoRecebimentoLabel_cdObra}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{lancamentoRecebimentoController.selected.cdObra}" title="#{bundle.ViewLancamentoRecebimentoTitle_cdObra}"/>
+
+                    <p:outputLabel value="#{bundle.ViewLancamentoRecebimentoLabel_dataPagamento}"/>
+                    <p:outputLabel value="#{lancamentoRecebimentoController.selected.dataPagamento}" title="#{bundle.ViewLancamentoRecebimentoTitle_dataPagamento}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </p:outputLabel>
+
+                    <p:outputLabel value="#{bundle.ViewLancamentoRecebimentoLabel_valorPago}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{lancamentoRecebimentoController.selected.valorPago}" title="#{bundle.ViewLancamentoRecebimentoTitle_valorPago}"/>
+
+                    <p:outputLabel value="#{bundle.ViewLancamentoRecebimentoLabel_notaFiscal}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{lancamentoRecebimentoController.selected.notaFiscal}" title="#{bundle.ViewLancamentoRecebimentoTitle_notaFiscal}"/>
+
+                    <p:outputLabel value="#{bundle.ViewLancamentoRecebimentoLabel_tipoPagamento}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{lancamentoRecebimentoController.selected.tipoPagamento}" title="#{bundle.ViewLancamentoRecebimentoTitle_tipoPagamento}"/>
+
+                    <p:outputLabel value="#{bundle.ViewLancamentoRecebimentoLabel_contaDestino}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{lancamentoRecebimentoController.selected.contaDestino}" title="#{bundle.ViewLancamentoRecebimentoTitle_contaDestino}"/>
+
+                    <p:outputLabel value="#{bundle.ViewLancamentoRecebimentoLabel_observacao}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{lancamentoRecebimentoController.selected.observacao}" title="#{bundle.ViewLancamentoRecebimentoTitle_observacao}"/>
+
+                </h:panelGrid>
+                <br></br>
+                <br></br>
+                <p:splitButton id= "edit" value="Ações" icon="ui-icon-arrow-4-diag" ajax="false" update="growl" >
+                    <p:separator></p:separator>
+
+                    <p:menuitem outcome="Edit" value="#{bundle.ViewLancamentoRecebimentoEditLink}" icon="ui-icon-pencil" ajax="false" update="grid"  />
+                    <p:separator></p:separator>
+                    <p:menuitem  action="#{lancamentoRecebimentoController.prepareCreate}" value="#{bundle.ViewLancamentoRecebimentoCreateLink}" icon="ui-icon-document-b" ajax="false" update="grid"  />    
+                    <p:separator></p:separator>
+                    <p:menuitem action="#{lancamentoRecebimentoController.prepareList}" value="#{bundle.ViewLancamentoRecebimentoShowAllLink}" icon="ui-icon-script" ajax="false" update="grid"  />    
+                    <p:separator></p:separator>
+                    <p:menuitem action="#{lancamentoRecebimentoController.destroyAndView}" value="#{bundle.ViewLancamentoRecebimentoDestroyLink}" icon="ui-icon-trash" ajax="false" update="grid"  />
+                </p:splitButton>
+
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

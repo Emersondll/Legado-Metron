@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="top">Lista de Funcionários</ui:define>
+
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListFuncionarioEmpty}" rendered="#{funcionarioController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{funcionarioController.items.rowCount > 0}">
+                    <h:outputText value="#{funcionarioController.pagination.itemsCount} Registros"/>&nbsp;
+                    <p:dataTable value="#{funcionarioController.items}" 
+                                 id="tbl" 
+                                 paginator="true"  
+                                 rows="10"
+                                 var="item"  
+                                 paginatorTemplate="{CurrentPageReport}
+                                 {FirstPageLink} 
+                                 {PreviousPageLink} 
+                                 {PageLinks} 
+                                 {NextPageLink} 
+                                 {LastPageLink}
+                                 " 
+                                 style="margin-bottom:20px">
+
+                        <p:column filterBy="#{item.nmFuncionario}" width="130">
+
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFuncionarioTitle_nmFuncionario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nmFuncionario}" style="text-transform: uppercase"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFuncionarioTitle_apelido}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.apelido}" style="text-transform: uppercase"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFuncionarioTitle_cpf}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cpf}" style="text-transform: uppercase"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFuncionarioTitle_rg}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rg}" style="text-transform: uppercase"/>
+                        </p:column>
+                        <!--                        <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="#{bundle.ListFuncionarioTitle_ctps}"/>
+                                                    </f:facet>
+                                                    <h:outputText value="#{item.ctps}" style="text-transform: uppercase"/>
+                                                </p:column>
+                                                <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="#{bundle.ListFuncionarioTitle_pisPasep}"/>
+                                                    </f:facet>
+                                                    <h:outputText value="#{item.pisPasep}" style="text-transform: uppercase"/>
+                                                </p:column>
+                                                <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="#{bundle.ListFuncionarioTitle_cnh}"/>
+                                                    </f:facet>
+                                                    <h:outputText value="#{item.cnh}" style="text-transform: uppercase"/>
+                                                </p:column>-->
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFuncionarioTitle_endereco}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.endereco}" style="text-transform: uppercase"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFuncionarioTitle_bairro}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.bairro}" style="text-transform: uppercase"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFuncionarioTitle_cep}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cep}" style="text-transform: uppercase"/>
+                        </p:column>
+                        <p:column width="130">
+
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFuncionarioTitle_cidade}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cidade}" style="text-transform: uppercase"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFuncionarioTitle_uf}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.uf}" style="text-transform: uppercase"/>
+                        </p:column>
+                        <!--                        <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="#{bundle.ListFuncionarioTitle_banco}"/>
+                                                    </f:facet>
+                                                    <h:outputText value="#{item.banco}" style="text-transform: uppercase"/>
+                                                </p:column>
+                                                <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="#{bundle.ListFuncionarioTitle_agencia}"/>
+                                                    </f:facet>
+                                                    <h:outputText value="#{item.agencia}" style="text-transform: uppercase"/>
+                                                </p:column>
+                                                <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="#{bundle.ListFuncionarioTitle_conta}"/>
+                                                    </f:facet>
+                                                    <h:outputText value="#{item.conta}" style="text-transform: uppercase"/>
+                                                </p:column>-->
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFuncionarioTitle_foneResid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.foneResid}" style="text-transform: uppercase"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFuncionarioTitle_celular1}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.celular1}" style="text-transform: uppercase"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFuncionarioTitle_dtAdmissao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtAdmissao}" style="text-transform: uppercase">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFuncionarioTitle_dtDemissao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtDemissao}" style="text-transform: uppercase">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFuncionarioTitle_asoDtInicio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.asoDtInicio}" style="text-transform: uppercase">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFuncionarioTitle_asoDtFim}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.asoDtFim}" style="text-transform: uppercase">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        
+                    </p:dataTable>
+                    <h:commandLink>
+                        <p:graphicImage  library="image" name="excel.png" width="24"/>
+                        <p:dataExporter type="xls" target="tbl" fileName="Relatorio_Funcionários" />
+                    </h:commandLink>
+                </h:panelGroup>
+                <br />
+
+                <p:commandButton action="#{funcionarioController.prepareCreate}" value="#{bundle.ListFuncionarioCreateLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

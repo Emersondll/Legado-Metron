@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="top">Cadastro de Funcionários</ui:define>
+
+        <ui:define name="body">
+            <p:tabView>
+                <p:tab title="Cadastro">
+                    <h:form>
+                        <h:panelGrid columns="2" cellpadding="5">
+
+                            <p:outputLabel value="#{bundle.CreateFuncionarioLabel_nmFuncionario}" for="nmFuncionario" />
+                            <p:inputText style="text-transform: uppercase" maxlength="50" id="nmFuncionario" value="#{funcionarioController.selected.nmFuncionario}" title="#{bundle.CreateFuncionarioTitle_nmFuncionario}" required="true" requiredMessage="#{bundle.CreateFuncionarioRequiredMessage_nmFuncionario}"/>
+
+                            <p:outputLabel value="#{bundle.CreateFuncionarioLabel_cpf}" for="cpf" />
+                            <p:inputText style="text-transform: uppercase" maxlength="11" id="cpf" value="#{funcionarioController.selected.cpf}" title="#{bundle.CreateFuncionarioTitle_cpf}" required="true" requiredMessage="#{bundle.CreateFuncionarioRequiredMessage_cpf}"/>
+
+                            <p:outputLabel value="#{bundle.CreateFuncionarioLabel_apelido}" for="apelido" />
+                            <p:inputText style="text-transform: uppercase" maxlength="30" id="apelido" value="#{funcionarioController.selected.apelido}" title="#{bundle.CreateFuncionarioTitle_apelido}" />
+
+                            <p:outputLabel value="#{bundle.CreateFuncionarioLabel_rg}" for="rg" />
+                            <p:inputText style="text-transform: uppercase" maxlength="30" id="rg" value="#{funcionarioController.selected.rg}" title="#{bundle.CreateFuncionarioTitle_rg}" />
+
+                            <p:outputLabel value="#{bundle.CreateFuncionarioLabel_ctps}" for="ctps" />
+                            <p:inputText style="text-transform: uppercase" maxlength="30" id="ctps" value="#{funcionarioController.selected.ctps}" title="#{bundle.CreateFuncionarioTitle_ctps}" />
+
+                            <p:outputLabel value="#{bundle.CreateFuncionarioLabel_pisPasep}" for="pisPasep" />
+                            <p:inputText style="text-transform: uppercase" maxlength="30" id="pisPasep" value="#{funcionarioController.selected.pisPasep}" title="#{bundle.CreateFuncionarioTitle_pisPasep}" />
+
+                            <p:outputLabel value="#{bundle.CreateFuncionarioLabel_cnh}" for="cnh" />
+                            <p:inputText style="text-transform: uppercase" maxlength="30" id="cnh" value="#{funcionarioController.selected.cnh}" title="#{bundle.CreateFuncionarioTitle_cnh}" />
+
+                            <p:outputLabel value="#{bundle.CreateFuncionarioLabel_endereco}" for="endereco" />
+                            <p:inputText style="text-transform: uppercase" maxlength="50" id="endereco" value="#{funcionarioController.selected.endereco}" title="#{bundle.CreateFuncionarioTitle_endereco}" />
+
+                            <p:outputLabel value="#{bundle.CreateFuncionarioLabel_bairro}" for="bairro" />
+                            <p:inputText style="text-transform: uppercase" maxlength="30" id="bairro" value="#{funcionarioController.selected.bairro}" title="#{bundle.CreateFuncionarioTitle_bairro}" />
+
+                            <p:outputLabel value="#{bundle.CreateFuncionarioLabel_cep}" for="cep" />
+                            <p:inputText style="text-transform: uppercase" maxlength="8" id="cep" value="#{funcionarioController.selected.cep}" title="#{bundle.CreateFuncionarioTitle_cep}" />
+
+                            <p:outputLabel value="#{bundle.CreateFuncionarioLabel_cidade}" for="cidade" />
+                            <p:inputText style="text-transform: uppercase" maxlength="30" id="cidade" value="#{funcionarioController.selected.cidade}" title="#{bundle.CreateFuncionarioTitle_cidade}" />
+
+                            <p:outputLabel value="#{bundle.CreateFuncionarioLabel_uf}" for="uf" />
+                            <p:inputText style="text-transform: uppercase" maxlength="2" id="uf" value="#{funcionarioController.selected.uf}" title="#{bundle.CreateFuncionarioTitle_uf}" />
+
+                            <p:outputLabel value="#{bundle.CreateFuncionarioLabel_banco}" for="banco" />
+                            <p:inputText style="text-transform: uppercase" maxlength="20" id="banco" value="#{funcionarioController.selected.banco}" title="#{bundle.CreateFuncionarioTitle_banco}" />
+
+                            <p:outputLabel value="#{bundle.CreateFuncionarioLabel_agencia}" for="agencia" />
+                            <p:inputText style="text-transform: uppercase" maxlength="15" id="agencia" value="#{funcionarioController.selected.agencia}" title="#{bundle.CreateFuncionarioTitle_agencia}" />
+
+                            <p:outputLabel value="#{bundle.CreateFuncionarioLabel_conta}" for="conta" />
+                            <p:inputText style="text-transform: uppercase" maxlength="15" id="conta" value="#{funcionarioController.selected.conta}" title="#{bundle.CreateFuncionarioTitle_conta}" />
+
+                            <p:outputLabel value="#{bundle.CreateFuncionarioLabel_foneResid}" for="foneResid" />
+                            <p:inputMask style="text-transform: uppercase" mask="(99) 9999-9999" id="foneResid" value="#{funcionarioController.selected.foneResid}" title="#{bundle.CreateFuncionarioTitle_foneResid}" />
+
+                            <p:outputLabel value="#{bundle.CreateFuncionarioLabel_celular1}" for="celular1" />
+                            <p:inputMask style="text-transform: uppercase" mask="(99) 99999-9999" id="celular1" value="#{funcionarioController.selected.celular1}" title="#{bundle.CreateFuncionarioTitle_celular1}" />
+
+                            <p:outputLabel value="#{bundle.CreateFuncionarioLabel_dtAdmissao}" for="dtAdmissao" />
+                            <p:calendar pattern="dd/MM/yyyy" mask="true"  id="dtAdmissao" value="#{funcionarioController.selected.dtAdmissao}" title="#{bundle.CreateFuncionarioTitle_dtAdmissao}" />
+
+                            <p:outputLabel value="#{bundle.CreateFuncionarioLabel_dtDemissao}" for="dtDemissao" />
+                            <p:calendar pattern="dd/MM/yyyy" mask="true" id="dtDemissao" value="#{funcionarioController.selected.dtDemissao}" title="#{bundle.CreateFuncionarioTitle_dtDemissao}" />
+
+                            <p:outputLabel value="#{bundle.CreateFuncionarioLabel_asoDtInicio}" for="asoDtInicio" />
+                            <p:calendar pattern="dd/MM/yyyy" mask="true" id="asoDtInicio" value="#{funcionarioController.selected.asoDtInicio}" title="#{bundle.CreateFuncionarioTitle_asoDtInicio}" />
+
+                            <p:outputLabel value="#{bundle.CreateFuncionarioLabel_asoDtFim}" for="asoDtFim" />
+                            <p:calendar pattern="dd/MM/yyyy" mask="true" id="asoDtFim" value="#{funcionarioController.selected.asoDtFim}" title="#{bundle.CreateFuncionarioTitle_asoDtFim}" />
+
+
+                            <p:outputLabel value="#{bundle.CreateFuncionarioLabel_observacao}" for="observacao" />
+                            <p:inputTextarea rows="6" cols="33" id="observacao" value="#{funcionarioController.selected.observacao}" title="#{bundle.CreateFuncionarioTitle_observacao}" />
+                        </h:panelGrid>
+                        <br></br>
+                        <br></br>
+                        <p:splitButton id= "Save" action="#{funcionarioController.create}" value="#{bundle.CreateFuncionarioSaveLink}" icon="ui-icon-disk" ajax="false" update="growl" >
+                            <p:separator></p:separator>
+                            <p:menuitem id= "exibir" action="#{funcionarioController.prepareList}" value="#{bundle.CreateFuncionarioShowAllLink}" immediate="true" icon="ui-icon-document" ajax="false" update="growl"  />
+                            <p:menuitem id= "limpa" value="Limpar campos"  process="@this" actionListener="#{funcionarioController.resetFail()}" icon="ui-icon-refresh" ajax="false" update="growl"  />
+                        </p:splitButton>
+
+
+
+                    </h:form>
+                </p:tab>
+
+                <p:tab title="Lista Cadastro">
+                    <h:form styleClass="jsfcrud_list_form">
+                        <h:panelGroup id="messagePanel" layout="block">
+                            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                        </h:panelGroup>
+                        <h:outputText escape="false" value="#{bundle.ListFuncionarioEmpty}" rendered="#{funcionarioController.items.rowCount == 0}"/>
+                        <h:panelGroup rendered="#{funcionarioController.items.rowCount > 0}">
+                            <h:outputText value="#{funcionarioController.pagination.itemsCount} Registros"/>&nbsp;
+                            <p:dataTable value="#{funcionarioController.items}" 
+                                         id="tbl" 
+                                         paginator="true"  
+                                         rows="10"
+                                         var="item"  
+                                         paginatorTemplate="{CurrentPageReport}
+                                         {FirstPageLink} 
+                                         {PreviousPageLink} 
+                                         {PageLinks} 
+                                         {NextPageLink} 
+                                         {LastPageLink}
+                                         " 
+                                         style="margin-bottom:20px">
+
+                                <p:column>
+
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListFuncionarioTitle_nmFuncionario}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.nmFuncionario}" style="text-transform: uppercase"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListFuncionarioTitle_apelido}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.apelido}" style="text-transform: uppercase"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListFuncionarioTitle_cpf}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.cpf}" style="text-transform: uppercase"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListFuncionarioTitle_rg}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.rg}" style="text-transform: uppercase"/>
+                                </p:column>
+
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListFuncionarioTitle_foneResid}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.foneResid}" style="text-transform: uppercase"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListFuncionarioTitle_celular1}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.celular1}" style="text-transform: uppercase"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListFuncionarioTitle_dtAdmissao}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.dtAdmissao}" style="text-transform: uppercase">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListFuncionarioTitle_dtDemissao}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.dtDemissao}" style="text-transform: uppercase">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListFuncionarioTitle_asoDtInicio}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.asoDtInicio}" style="text-transform: uppercase">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListFuncionarioTitle_asoDtFim}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.asoDtFim}" style="text-transform: uppercase">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="&nbsp;"/>
+                                    </f:facet>
+                                    <h:commandLink action="#{funcionarioController.prepareView}" value="#{bundle.ListFuncionarioViewLink}"/>
+                                    <h:outputText value=" "/>
+                                    <h:commandLink action="#{funcionarioController.prepareEdit}" value="#{bundle.ListFuncionarioEditLink}"/>
+                                    <h:outputText value=" "/>
+                                    <h:commandLink action="#{funcionarioController.destroy}" value="#{bundle.ListFuncionarioDestroyLink}"/>
+                                </p:column>
+                            </p:dataTable>
+                            <h:commandLink>
+                                <p:graphicImage  library="image" name="excel.png" width="24"/>
+                                <p:dataExporter type="xls" target="tbl" fileName="Relatorio_Funcionários" />
+                            </h:commandLink>
+                        </h:panelGroup>
+                       
+                    </h:form>
+                </p:tab>
+            </p:tabView>
+        </ui:define>
+    </ui:composition>
+
+</html>

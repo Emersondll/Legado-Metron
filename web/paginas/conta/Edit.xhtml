@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="top">Editar Cadastro de Conta</ui:define>
+
+        <ui:define name="body">
+
+            <h:form>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <p:outputLabel value="#{bundle.EditContaLabel_conta}" for="conta" />
+                    <p:inputText id="conta" value="#{contaController.selected.conta}" style="text-transform: uppercase"  title="#{bundle.EditContaTitle_conta}" required="true" requiredMessage="#{bundle.EditContaRequiredMessage_conta}"/>
+
+                    <p:outputLabel value="#{bundle.EditContaLabel_banco}" for="banco" />
+                    <p:inputText id="banco" value="#{contaController.selected.banco}" style="text-transform: uppercase"  title="#{bundle.EditContaTitle_banco}" required="true" requiredMessage="#{bundle.EditContaRequiredMessage_banco}"/>
+
+                    <p:outputLabel value="#{bundle.EditContaLabel_agencia}" for="agencia" />
+                    <p:inputText id="agencia" value="#{contaController.selected.agencia}" style="text-transform: uppercase"  title="#{bundle.EditContaTitle_agencia}" required="true" requiredMessage="#{bundle.EditContaRequiredMessage_agencia}"/>
+
+                    <p:outputLabel value="#{bundle.EditContaLabel_status}" for="status" />
+                    <p:selectOneMenu id="status" value="#{contaController.selected.status}"  style="width:170px" >
+                        <f:selectItem itemLabel="Ativa" itemValue="A" />
+                        <f:selectItem itemLabel="Inativa" itemValue="I" />
+                    </p:selectOneMenu>
+
+                </h:panelGrid>
+                <br></br>
+                <br></br>
+                <p:splitButton id= "Save" action="#{contaController.update}" value="#{bundle.EditContaSaveLink}" icon="ui-icon-disk" ajax="false" update="growl" >
+                    <p:separator></p:separator>
+                    <p:menuitem id= "exibirtodos" action="#{contaController.prepareList}" value="#{bundle.EditContaShowAllLink}" immediate="true" icon="ui-icon-document" ajax="false" update="growl"  />
+                    <p:menuitem id= "vieweste" outcome="View" value="#{bundle.EditContaViewLink}" icon="ui-icon-refresh" ajax="false" update="growl"  />
+                </p:splitButton>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

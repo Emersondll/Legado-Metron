@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="top">Cadastro de Serviços</ui:define>
+
+        <ui:define name="body">
+
+            <p:tabView>
+                <p:tab title="Cadastro">
+                    <h:form> 
+                        <h:panelGrid columns="2" cellpadding="5">
+
+                            <p:outputLabel value="#{bundle.CreateServicoLabel_descServico}" for="descServico" />
+                            <p:inputText style="text-transform: uppercase" id="descServico" value="#{servicoController.selected.descServico}" title="#{bundle.CreateServicoTitle_descServico}" required="true" requiredMessage="#{bundle.CreateServicoRequiredMessage_descServico}"/>
+
+                            <p:outputLabel value="#{bundle.CreateServicoLabel_vlPadrao}" for="vlPadrao" />
+                            <p:inputText style="text-transform: uppercase" id="vlPadrao" value="#{servicoController.selected.vlPadrao}" title="#{bundle.CreateServicoTitle_vlPadrao}" />
+
+                            <p:outputLabel value="#{bundle.CreateServicoLabel_tpServico}" for="tpServico" />
+                            <p:selectOneMenu id="tpServico" value="#{servicoController.selected.tpServico}"  style="width:170px" >
+                                <f:selectItem itemLabel="Preparação" itemValue="P" />
+                                <f:selectItem itemLabel="Execução" itemValue="E" />
+                                <f:selectItem itemLabel="Orçamento" itemValue="O" />
+
+                            </p:selectOneMenu>
+
+                            <p:outputLabel value="#{bundle.CreateServicoLabel_tpObra}" for="tpObra" />
+                            <p:selectOneMenu id="tpObra" value="#{servicoController.selected.tpObra}"  style="width:170px" >
+                                <f:selectItem itemLabel="Civil" itemValue="C" />
+                                <f:selectItem itemLabel="Industrial" itemValue="I" />
+                                <f:selectItem itemLabel="Urbano" itemValue="U" />
+                                <f:selectItem itemLabel="Rural" itemValue="R" />
+                                <f:selectItem itemLabel="Várias" itemValue="V" />
+                            </p:selectOneMenu>
+
+                            <p:outputLabel value="#{bundle.CreateServicoLabel_tpCobranca}" for="tpCobranca" />
+                            <p:selectOneMenu id="tpCobranca" value="#{servicoController.selected.tpCobranca}"  style="width:170px" >
+                                <f:selectItem itemLabel="Hora" itemValue="H" />
+                                <f:selectItem itemLabel="Dia" itemValue="D" />
+                                <f:selectItem itemLabel="Serviço Fechado" itemValue="F" />
+                            </p:selectOneMenu>
+
+                            <p:outputLabel value="#{bundle.CreateServicoLabel_idFalta}" for="idFalta" />
+                            <p:selectOneMenu id="idFalta" value="#{servicoController.selected.idFalta}"  style="width:170px" >
+                                <f:selectItem itemLabel="Não" itemValue="N" />
+                                <f:selectItem itemLabel="Sim" itemValue="S" />
+
+                            </p:selectOneMenu>
+
+                        </h:panelGrid>
+                        <br></br>
+                        <br></br>
+                        <p:splitButton id= "Save" action="#{servicoController.create}" value="#{bundle.CreateServicoSaveLink}"  icon="ui-icon-disk" ajax="false" update="growl" >
+                            <p:separator>style="width:100px"</p:separator>
+                            <p:menuitem id= "exibir" action="#{servicoController.prepareList}" value="#{bundle.CreateServicoShowAllLink}" immediate="true" icon="ui-icon-document" ajax="false" update="grid" />
+                            <p:menuitem id= "limpa" value="Limpar campos"  process="@this" actionListener="#{servicoController.resetFail()}" icon="ui-icon-refresh" ajax="false" update="grid"  />
+                        </p:splitButton>
+
+
+                    </h:form>
+                </p:tab>
+                <p:tab title="Lista Cadastro">
+                    <h:form styleClass="jsfcrud_list_form">
+                        <h:panelGroup id="messagePanel" layout="block">
+                            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                        </h:panelGroup>
+                        <h:outputText escape="false" value="#{bundle.ListServicoEmpty}" rendered="#{servicoController.items.rowCount == 0}"/>
+                        <h:panelGroup rendered="#{servicoController.items.rowCount > 0}">
+                            <h:outputText value="#{servicoController.pagination.itemsCount} Registros"/>&nbsp;
+                            <p:dataTable value="#{servicoController.items}" 
+                                         id="tbl" 
+                                         paginator="true"  
+                                         rows="10" 
+                                         var="item"  
+                                         paginatorTemplate="{CurrentPageReport}
+                                         {FirstPageLink} 
+                                         {PreviousPageLink} 
+                                         {PageLinks} 
+                                         {NextPageLink} 
+                                         {LastPageLink}
+                                         " 
+                                         style="margin-bottom:20px">
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListServicoTitle_cdServico}"/>
+                                    </f:facet>
+                                    <h:outputText style="text-transform: uppercase" value="#{item.cdServico}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListServicoTitle_descServico}"/>
+                                    </f:facet>
+                                    <h:outputText style="text-transform: uppercase" value="#{item.descServico}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListServicoTitle_tpServico}"/>
+                                    </f:facet>
+                                    <h:outputText style="text-transform: uppercase" value="#{item.tpServico}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListServicoTitle_tpObra}"/>
+                                    </f:facet>
+                                    <h:outputText style="text-transform: uppercase" value="#{item.tpObra}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListServicoTitle_vlPadrao}"/>
+                                    </f:facet>
+                                    <h:outputText style="text-transform: uppercase" value="#{item.vlPadrao}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListServicoTitle_tpCobranca}"/>
+                                    </f:facet>
+                                    <h:outputText style="text-transform: uppercase" value="#{item.tpCobranca}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListServicoTitle_idFalta}"/>
+                                    </f:facet>
+                                    <h:outputText style="text-transform: uppercase" value="#{item.idFalta}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="&nbsp;"/>
+                                    </f:facet>
+                                    <h:commandLink action="#{servicoController.prepareView}" value="#{bundle.ListServicoViewLink}"/>
+                                    <h:outputText value=" "/>
+                                    <h:commandLink action="#{servicoController.prepareEdit}" value="#{bundle.ListServicoEditLink}"/>
+                                    <h:outputText value=" "/>
+                                    <h:commandLink action="#{servicoController.destroy}" value="#{bundle.ListServicoDestroyLink}"/>
+                                </p:column>
+                            </p:dataTable>
+                            <h:commandLink>
+                                <p:graphicImage  library="image" name="excel.png" width="24"/>
+                                <p:dataExporter type="xls" target="tbl" fileName="Relatorio_Cadastro_Servicos" />
+                            </h:commandLink>
+                        </h:panelGroup>
+
+                    </h:form>
+                </p:tab>
+            </p:tabView>
+
+        </ui:define>
+    </ui:composition>
+
+</html>

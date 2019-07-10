@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="top">Dados do Cliente</ui:define>
+
+        <ui:define name="body">
+            <h:form>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <p:outputLabel value="#{bundle.ViewClienteLabel_nmCliente}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{clienteController.selected.nmCliente}" title="#{bundle.ViewClienteTitle_nmCliente}"/>
+                    
+                    <p:outputLabel value="#{bundle.ViewClienteLabel_endereco}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{clienteController.selected.endereco}" title="#{bundle.ViewClienteTitle_endereco}"/>
+                    
+                    <p:outputLabel value="#{bundle.ViewClienteLabel_bairro}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{clienteController.selected.bairro}" title="#{bundle.ViewClienteTitle_bairro}"/>
+                    
+                    <p:outputLabel value="#{bundle.ViewClienteLabel_cidade}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{clienteController.selected.cidade}" title="#{bundle.ViewClienteTitle_cidade}"/>
+                    
+                    <p:outputLabel value="#{bundle.ViewClienteLabel_cep}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{clienteController.selected.cep}" title="#{bundle.ViewClienteTitle_cep}"/>
+                    
+                    <p:outputLabel value="#{bundle.ViewClienteLabel_uf}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{clienteController.selected.uf}" title="#{bundle.ViewClienteTitle_uf}"/>
+                    
+                    <p:outputLabel value="#{bundle.ViewClienteLabel_foneComercial}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{clienteController.selected.foneComercial}" title="#{bundle.ViewClienteTitle_foneComercial}"/>
+                    
+                    <p:outputLabel value="#{bundle.ViewClienteLabel_foneResidencial}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{clienteController.selected.foneResidencial}" title="#{bundle.ViewClienteTitle_foneResidencial}"/>
+                    
+                    <p:outputLabel value="#{bundle.ViewClienteLabel_celular}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{clienteController.selected.celular}" title="#{bundle.ViewClienteTitle_celular}"/>
+                    
+                    <p:outputLabel value="#{bundle.ViewClienteLabel_tpPessoa}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{clienteController.selected.tpPessoa}" title="#{bundle.ViewClienteTitle_tpPessoa}"/>
+                    
+                    <p:outputLabel value="#{bundle.ViewClienteLabel_cpfCnpj}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{clienteController.selected.cpfCnpj}" title="#{bundle.ViewClienteTitle_cpfCnpj}"/>
+                    
+                    <p:outputLabel value="#{bundle.ViewClienteLabel_rgInsc}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{clienteController.selected.rgInsc}" title="#{bundle.ViewClienteTitle_rgInsc}"/>
+                    
+                    <p:outputLabel value="#{bundle.ViewClienteLabel_email}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{clienteController.selected.email}" title="#{bundle.ViewClienteTitle_email}"/>
+                    
+                    <p:outputLabel value="#{bundle.ViewClienteLabel_observacao}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{clienteController.selected.observacao}" title="#{bundle.ViewClienteTitle_observacao}"/>
+                    
+                    <p:outputLabel value="#{bundle.ViewClienteLabel_cdCliente}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{clienteController.selected.cdCliente}" title="#{bundle.ViewClienteTitle_cdCliente}"/>
+                </h:panelGrid>
+                <br></br>
+                <br></br>
+                <p:splitButton id= "edit" value="Ações" icon="ui-icon-arrow-4-diag" ajax="false" update="growl" >
+                    <p:separator></p:separator>
+
+                    <p:menuitem outcome="Edit" value="#{bundle.ViewClienteEditLink}" icon="ui-icon-pencil" ajax="false" update="growl"  />
+                    <p:separator></p:separator>
+                    <p:menuitem action="#{clienteController.prepareCreate}" value="#{bundle.ViewClienteCreateLink}" icon="ui-icon-document-b" ajax="false" update="growl"  />    
+                    <p:separator></p:separator>
+                    <p:menuitem action="#{clienteController.prepareList}" value="#{bundle.ViewClienteShowAllLink}" icon="ui-icon-script" ajax="false" update="growl"  />    
+                    <p:separator></p:separator>
+                    <p:menuitem action="#{clienteController.destroyAndView}" value="#{bundle.ViewClienteDestroyLink}" icon="ui-icon-trash" ajax="false" update="growl"  />
+                </p:splitButton>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

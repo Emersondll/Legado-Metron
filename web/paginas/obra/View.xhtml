@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="top">Dados da Obra</ui:define>
+
+        <ui:define name="body">
+
+            <h:form>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <p:outputLabel value="#{bundle.ViewObraLabel_cdObra}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{obraController.selected.cdObra}" title="#{bundle.ViewObraTitle_cdObra}"/>
+
+                    <p:outputLabel value="#{bundle.ViewObraLabel_nmObra}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{obraController.selected.nmObra}" title="#{bundle.ViewObraTitle_nmObra}"/>
+
+                    <p:outputLabel value="#{bundle.ViewObraLabel_endereco}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{obraController.selected.endereco}" title="#{bundle.ViewObraTitle_endereco}"/>
+
+                    <p:outputLabel value="#{bundle.ViewObraLabel_bairro}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{obraController.selected.bairro}" title="#{bundle.ViewObraTitle_bairro}"/>
+
+                    <p:outputLabel value="#{bundle.ViewObraLabel_cidade}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{obraController.selected.cidade}" title="#{bundle.ViewObraTitle_cidade}"/>
+
+                    <p:outputLabel value="#{bundle.ViewObraLabel_cep}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{obraController.selected.cep}" title="#{bundle.ViewObraTitle_cep}"/>
+                    
+                    <p:outputLabel value="#{bundle.ViewObraLabel_uf}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{obraController.selected.uf}" title="#{bundle.ViewObraTitle_uf}"/>
+
+                    <p:outputLabel value="#{bundle.ViewObraLabel_status}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{obraController.selected.status}" title="#{bundle.ViewObraTitle_status}"/>
+
+                    <p:outputLabel value="#{bundle.ViewObraLabel_tpObra}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{obraController.selected.tpObra}" title="#{bundle.ViewObraTitle_tpObra}"/>
+
+                    <p:outputLabel value="#{bundle.ViewObraLabel_observacao}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{obraController.selected.observacao}" title="#{bundle.ViewObraTitle_observacao}"/>
+
+                    <p:outputLabel value="#{bundle.ViewObraLabel_cdCliente}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{obraController.selected.cdCliente}" title="#{bundle.ViewObraTitle_cdCliente}"/>
+                </h:panelGrid>
+                <br></br>
+                <br></br>
+                <p:splitButton id= "edit" value="Ações" icon="ui-icon-arrow-4-diag" ajax="false" update="growl" >
+                    <p:separator></p:separator>
+
+                    <p:menuitem outcome="Edit" value="#{bundle.ViewObraEditLink}" icon="ui-icon-pencil" ajax="false" update="grid"  />
+                    <p:separator></p:separator>
+                    <p:menuitem  action="#{obraController.prepareCreate}" value="#{bundle.ViewObraCreateLink}"  icon="ui-icon-document-b" ajax="false" update="grid"  />    
+                    <p:separator></p:separator>
+                    <p:menuitem action="#{obraController.prepareList}" value="#{bundle.ViewObraShowAllLink}" icon="ui-icon-script" ajax="false" update="grid"  />    
+                    <p:separator></p:separator>
+                    <p:menuitem action="#{obraController.destroyAndView}" value="#{bundle.ViewObraDestroyLink}" icon="ui-icon-trash" ajax="false" update="grid"  />
+                </p:splitButton>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

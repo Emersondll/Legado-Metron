@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="top">Editar Cadastro de Bens da Empresa</ui:define>
+
+        <ui:define name="body">
+
+            <h:form>
+                <h:panelGrid columns="2" cellpadding="5">
+
+                    <p:outputLabel value="#{bundle.EditBemLabel_dsBem}" for="dsBem" />
+                    <p:inputText id="dsBem" style="text-transform: uppercase" value="#{bemController.selected.dsBem}" title="#{bundle.EditBemTitle_dsBem}" required="true" requiredMessage="#{bundle.EditBemRequiredMessage_dsBem}"/>
+
+                    <p:outputLabel value="#{bundle.EditBemLabel_tpBem}" for="tpBem" />
+                    <p:selectOneMenu id="tpBem" value="#{bemController.selected.tpBem}"  style="width:170px" >
+                        <f:selectItem itemLabel="Equipamento" itemValue="E" />
+                        <f:selectItem itemLabel="Veiculo" itemValue="V" />
+                        <f:selectItem itemLabel="Outros" itemValue="O" />
+                    </p:selectOneMenu>
+                </h:panelGrid>
+                <br></br>
+                <br></br>
+
+                <p:splitButton id= "Save" action="#{bemController.update}" value="#{bundle.EditBemSaveLink}" icon="ui-icon-disk" ajax="false" update="growl" >
+                    <p:separator></p:separator>
+                    <p:menuitem id= "exibirtodos" action="#{bemController.prepareList}" value="#{bundle.EditBemShowAllLink}" immediate="true" icon="ui-icon-document" ajax="false" update="growl"  />
+                    <p:menuitem id= "vieweste" outcome="View" value="#{bundle.EditBemViewLink}" icon="ui-icon-refresh" ajax="false" update="growl"  />
+                </p:splitButton>
+
+
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="top">Lista de Contas</ui:define>
+
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListContaEmpty}" rendered="#{contaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{contaController.items.rowCount > 0}">
+                    <h:outputText value="#{contaController.pagination.itemsCount} Registros"/>&nbsp;
+                    <p:dataTable value="#{contaController.items}" 
+                                 id="tbl" 
+                                 paginator="true"  
+                                 rows="10"
+                                 var="item"  
+                                 paginatorTemplate="{CurrentPageReport}
+                                 {FirstPageLink} 
+                                 {PreviousPageLink} 
+                                 {PageLinks} 
+                                 {NextPageLink} 
+                                 {LastPageLink}
+                                 " 
+                                 style="margin-bottom:20px">
+                        <p:column filterBy="#{item.conta}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListContaTitle_conta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.conta}" style="text-transform: uppercase" />
+                        </p:column>
+                        <p:column filterBy="#{item.banco}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListContaTitle_banco}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.banco}" style="text-transform: uppercase" />
+                        </p:column>
+                        <p:column filterBy="#{item.agencia}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListContaTitle_agencia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.agencia}" style="text-transform: uppercase" />
+                        </p:column>
+                        <p:column filterBy="#{item.status}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListContaTitle_status}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.status}" style="text-transform: uppercase" />
+                        </p:column>
+
+                    </p:dataTable>
+                    <h:commandLink>
+                        <p:graphicImage  library="image" name="excel.png" width="24"/>
+                        <p:dataExporter type="xls" target="tbl" fileName="Relatorio_Contas" />
+                    </h:commandLink>
+                </h:panelGroup>
+                <br />
+                <p:commandButton action="#{contaController.prepareCreate}" value="#{bundle.ListContaCreateLink}"/>
+                <br />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

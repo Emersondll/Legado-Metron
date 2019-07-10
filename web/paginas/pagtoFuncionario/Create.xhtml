@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="top">Lançamento do Pagamento de Funcionário</ui:define>
+
+        <ui:define name="body">
+
+            <p:tabView>
+                <p:tab title="Lançamento">
+                    <h:form> 
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <p:outputLabel value="#{bundle.CreatePagtoFuncionarioLabel_pagtoFuncionarioPK_dtInicio}" for="pagtoFuncionarioPK_dtInicio" />
+                            <p:calendar pattern="dd/MM/yyyy" mask="true" id="pagtoFuncionarioPK_dtInicio" value="#{pagtoFuncionarioController.selected.pagtoFuncionarioPK.dtInicio}" title="#{bundle.CreatePagtoFuncionarioTitle_pagtoFuncionarioPK_dtInicio}" required="true" requiredMessage="#{bundle.CreatePagtoFuncionarioRequiredMessage_pagtoFuncionarioPK_dtInicio}"/>
+
+                            <p:outputLabel value="#{bundle.CreatePagtoFuncionarioLabel_dtFim}" for="dtFim" />
+                            <p:calendar required="true" pattern="dd/MM/yyyy" mask="true" id="dtFim" value="#{pagtoFuncionarioController.selected.dtFim}" title="#{bundle.CreatePagtoFuncionarioTitle_dtFim}" />
+
+                            <p:outputLabel value="#{bundle.CreatePagtoFuncionarioLabel_valor}" for="valor" />
+                            <p:inputText required="true" style="text-transform: uppercase" id="valor" value="#{pagtoFuncionarioController.selected.valor}" title="#{bundle.CreatePagtoFuncionarioTitle_valor}" />
+
+                            <p:outputLabel value="#{bundle.CreatePagtoFuncionarioLabel_valorRefeicaoDia}" for="valorRefeicaoDia" />
+                            <p:inputText required="true" style="text-transform: uppercase" id="valorRefeicaoDia" value="#{pagtoFuncionarioController.selected.valorRefeicaoDia}" title="#{bundle.CreatePagtoFuncionarioTitle_valorRefeicaoDia}" />
+
+                            <p:outputLabel value="#{bundle.CreatePagtoFuncionarioLabel_qtdValeRefeicao}" for="qtdValeRefeicao" />
+                            <p:inputText required="true" style="text-transform: uppercase" id="qtdValeRefeicao" value="#{pagtoFuncionarioController.selected.qtdValeRefeicao}" title="#{bundle.CreatePagtoFuncionarioTitle_qtdValeRefeicao}" />
+
+                            <p:outputLabel value="#{bundle.CreatePagtoFuncionarioLabel_valorValeTransporte}" for="valorValeTransporte" />
+                            <p:inputText required="true" style="text-transform: uppercase" id="valorValeTransporte" value="#{pagtoFuncionarioController.selected.valorValeTransporte}" title="#{bundle.CreatePagtoFuncionarioTitle_valorValeTransporte}" />
+
+                            <p:outputLabel value="#{bundle.CreatePagtoFuncionarioLabel_qtdValeTransporte}" for="qtdValeTransporte" />
+                            <p:inputText  required="true" style="text-transform: uppercase" id="qtdValeTransporte" value="#{pagtoFuncionarioController.selected.qtdValeTransporte}" title="#{bundle.CreatePagtoFuncionarioTitle_qtdValeTransporte}" />
+
+                            <p:outputLabel value="#{bundle.CreatePagtoFuncionarioLabel_funcionario}" for="funcionario" />
+                            <p:selectOneMenu id="funcionario" 
+                                             value="#{pagtoFuncionarioController.selected.funcionario}"
+                                             required="true" 
+                                             style="width:170px"
+                                             filter="true">
+                                <f:selectItems value="#{funcionarioController.itemsAvailableSelectOne}"/>
+                            </p:selectOneMenu>
+
+                        </h:panelGrid>
+                        <br></br>
+                        <br></br>
+                        <p:splitButton id= "Save" action="#{pagtoFuncionarioController.create}" value="#{bundle.CreatePagtoFuncionarioSaveLink}" icon="ui-icon-disk" ajax="false" update="growl" >
+                            <p:separator></p:separator>
+                            <p:menuitem id= "exibir" action="#{pagtoFuncionarioController.prepareList}" value="#{bundle.CreatePagtoFuncionarioShowAllLink}" immediate="true" icon="ui-icon-document" ajax="false" update="growl"  />
+                            <p:menuitem id= "limpa" value="Limpar campos"  process="@this" actionListener="#{pagtoFuncionarioController.resetFail()}" icon="ui-icon-refresh" ajax="false" update="growl"  />
+                        </p:splitButton>
+
+                    </h:form>
+                </p:tab>
+                <p:tab title="Lista Lançamentos">
+                    <h:form styleClass="jsfcrud_list_form">
+                        <h:panelGroup id="messagePanel" layout="block">
+                            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                        </h:panelGroup>
+
+                        <h:outputText escape="false" value="#{bundle.ListPagtoFuncionarioEmpty}" rendered="#{pagtoFuncionarioController.items.rowCount == 0}"/>
+
+                        <h:panelGroup rendered="#{pagtoFuncionarioController.items.rowCount > 0}">
+                            <h:outputText value="#{pagtoFuncionarioController.pagination.itemsCount} Registros"/>&nbsp;
+                            <p:dataTable value="#{pagtoFuncionarioController.items}" 
+                                         id="tbl" 
+                                         paginator="true"  
+                                         rows="10"
+                                         var="item"  
+                                         paginatorTemplate="{CurrentPageReport}
+                                         {FirstPageLink} 
+                                         {PreviousPageLink} 
+                                         {PageLinks} 
+                                         {NextPageLink} 
+                                         {LastPageLink}
+                                         " 
+                                         style="margin-bottom:20px">
+
+                                <p:column filterStyle="#{item.pagtoFuncionarioPK.dtInicio}" >
+
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListPagtoFuncionarioTitle_pagtoFuncionarioPK_dtInicio}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.pagtoFuncionarioPK.dtInicio}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/>    
+                                    </h:outputText>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListPagtoFuncionarioTitle_dtFim}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.dtFim}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListPagtoFuncionarioTitle_valor}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.valor}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListPagtoFuncionarioTitle_valorRefeicaoDia}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.valorRefeicaoDia}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListPagtoFuncionarioTitle_qtdValeRefeicao}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.qtdValeRefeicao}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListPagtoFuncionarioTitle_valorValeTransporte}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.valorValeTransporte}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListPagtoFuncionarioTitle_qtdValeTransporte}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.qtdValeTransporte}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListPagtoFuncionarioTitle_funcionario}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.funcionario.nmFuncionario}"/>
+
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="&nbsp;"/>
+                                    </f:facet>
+                                    <h:commandLink action="#{pagtoFuncionarioController.prepareView}" value="#{bundle.ListPagtoFuncionarioViewLink}"/>
+                                    <h:outputText value=" "/>
+                                    <h:commandLink action="#{pagtoFuncionarioController.prepareEdit}" value="#{bundle.ListPagtoFuncionarioEditLink}"/>
+                                    <h:outputText value=" "/>
+                                    <h:commandLink action="#{pagtoFuncionarioController.destroy}" value="#{bundle.ListPagtoFuncionarioDestroyLink}"/>
+                                </p:column>
+                            </p:dataTable>
+                            <h:commandLink>
+                                <p:graphicImage  library="image" name="excel.png" width="24"/>
+                                <p:dataExporter type="xls" target="tbl" fileName="Relatorio_Folha_Pagamento_Funcionario" />
+                            </h:commandLink>
+                        </h:panelGroup>
+                    </h:form>
+                </p:tab>
+            </p:tabView>
+        </ui:define>
+    </ui:composition>
+
+</html>

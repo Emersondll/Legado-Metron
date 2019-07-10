@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="top">Lista de Bens</ui:define>
+
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListBemEmpty}" rendered="#{bemController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{bemController.items.rowCount > 0}">
+                    <h:outputText value="#{bemController.pagination.itemsCount} Registros"/>&nbsp;
+                    <p:dataTable value="#{bemController.items}" 
+                                 id="tbl" 
+                                 paginator="true"  
+                                 rows="10"
+                                 var="item"  
+                                 paginatorTemplate="{CurrentPageReport}
+                                 {FirstPageLink} 
+                                 {PreviousPageLink} 
+                                 {PageLinks} 
+                                 {NextPageLink} 
+                                 {LastPageLink}
+                                 " 
+                                 style="margin-bottom:20px">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBemTitle_cdBem}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cdBem}" style="text-transform: uppercase"/>
+                        </p:column>
+                        <p:column filterBy="#{item.dsBem}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBemTitle_dsBem}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dsBem}" style="text-transform: uppercase" />
+                        </p:column>
+                        <p:column filterBy="#{item.tpBem}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBemTitle_tpBem}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tpBem}" style="text-transform: uppercase" />
+                        </p:column>
+
+                    </p:dataTable>
+                    <h:commandLink>
+                        <p:graphicImage  library="image" name="excel.png" width="24"/>
+                        <p:dataExporter type="xls" target="tbl" fileName="Relatorio_Bens" />
+                    </h:commandLink>
+                </h:panelGroup>
+                <br />
+                <p:commandButton action="#{bemController.prepareCreate}" value="#{bundle.ListBemCreateLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

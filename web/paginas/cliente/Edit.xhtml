@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="top">Editar Cadastro de Cliente</ui:define>
+
+        <ui:define name="body">
+
+            <h:form id="formeditCad">
+                <h:panelGrid columns="2" cellpadding="5">
+                    <p:outputLabel value="#{bundle.CreateClienteLabel_nmCliente}" for="nmCliente" />
+                    <p:inputText style="text-transform: uppercase" id="nmCliente" value="#{clienteController.selected.nmCliente}" title="#{bundle.CreateClienteTitle_nmCliente}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_nmCliente}"/>
+
+                    <p:outputLabel value="#{bundle.CreateClienteLabel_endereco}" for="endereco" />
+                    <p:inputText style="text-transform: uppercase" id="endereco" value="#{clienteController.selected.endereco}" title="#{bundle.CreateClienteTitle_endereco}" />
+
+                    <p:outputLabel value="#{bundle.CreateClienteLabel_bairro}" for="bairro" />
+                    <p:inputText style="text-transform: uppercase" id="bairro" value="#{clienteController.selected.bairro}" title="#{bundle.CreateClienteTitle_bairro}" />
+
+                    <p:outputLabel value="#{bundle.CreateClienteLabel_cidade}" for="cidade" />
+                    <p:inputText style="text-transform: uppercase" id="cidade" value="#{clienteController.selected.cidade}" title="#{bundle.CreateClienteTitle_cidade}" />
+
+                    <p:outputLabel value="#{bundle.EditClienteLabel_cep}" for="cep" />
+                    <p:inputText id="cep" maxlength="8" style="text-transform: uppercase" value="#{clienteController.selected.cep}" title="#{bundle.EditClienteTitle_cep}" />
+
+                    <p:outputLabel value="#{bundle.CreateClienteLabel_uf}" for="uf" />
+                    <p:inputText style="text-transform: uppercase" id="uf" value="#{clienteController.selected.uf}" title="#{bundle.CreateClienteTitle_uf}" maxlength="2" />
+
+                    <p:outputLabel value="#{bundle.CreateClienteLabel_foneComercial}" for="foneComercial" />
+                    <p:inputMask mask="(99) 9999-9999" id="foneComercial" value="#{clienteController.selected.foneComercial}" title="#{bundle.CreateClienteTitle_foneComercial}" />
+
+                    <p:outputLabel value="#{bundle.CreateClienteLabel_foneResidencial}" for="foneResidencial" />
+                    <p:inputMask mask="(99) 9999-9999" id="foneResidencial" value="#{clienteController.selected.foneResidencial}" title="#{bundle.CreateClienteTitle_foneResidencial}" />
+
+                    <p:outputLabel value="#{bundle.CreateClienteLabel_celular}" for="celular" />
+                    <p:inputMask mask="(99) 99999-9999"  id="celular" value="#{clienteController.selected.celular}" title="#{bundle.CreateClienteTitle_celular}" />
+
+                    <p:outputLabel value="Tipo Pessoa" for="tpPessoa" />
+                    <p:selectOneMenu id="tpPessoa" value="#{clienteController.selected.tpPessoa}" style="width:170px" >
+
+                        <f:selectItem itemLabel="Jurídica" itemValue="J" />
+                        <f:selectItem itemLabel="Fisíca" itemValue="F" />
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="#{bundle.CreateClienteLabel_cpfCnpj}" for="cpfCnpj" />
+                    <p:inputText id="cpfCnpj" value="#{clienteController.selected.cpfCnpj}" title="#{bundle.CreateClienteTitle_cpfCnpj}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_cpfCnpj}"/>
+
+                    <p:outputLabel value="#{bundle.CreateClienteLabel_rgInsc}" for="rgInsc" />
+                    <p:inputText id="rgInsc" value="#{clienteController.selected.rgInsc}" title="#{bundle.CreateClienteTitle_rgInsc}" />
+
+                    <p:outputLabel value="#{bundle.CreateClienteLabel_email}" for="email" />
+                    <p:inputText style="text-transform: lowercase" id="email" value="#{clienteController.selected.email}" title="#{bundle.CreateClienteTitle_email}" />
+
+                    <p:outputLabel value="#{bundle.CreateClienteLabel_observacao}" for="observacao" />
+                    <p:inputTextarea rows="6" cols="33" id="observacao" value="#{clienteController.selected.observacao}" title="#{bundle.CreateClienteTitle_observacao}" />
+
+                </h:panelGrid>
+                <br></br>
+                <br></br>
+                <p:splitButton id= "SaveCli" action="#{clienteController.update}" value="#{bundle.EditClienteSaveLink}" icon="ui-icon-disk" ajax="false" update="growl" >
+                    <p:separator></p:separator>
+                    <p:menuitem id= "exibirtodos" action="#{clienteController.prepareList}" value="#{bundle.EditClienteShowAllLink}" immediate="true" icon="ui-icon-document" ajax="false" update="growl"  />
+                    <p:menuitem id= "vieweste" outcome="View" value="#{bundle.EditClienteViewLink}" icon="ui-icon-refresh" ajax="false" update="growl"  />
+                </p:splitButton>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

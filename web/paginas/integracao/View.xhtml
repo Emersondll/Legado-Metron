@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="top">Dados da Integração</ui:define>
+
+        <ui:define name="body">
+            <h:form>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <p:outputLabel value="#{bundle.ViewIntegracaoLabel_idIntegracao}"/>
+                    <p:outputLabel value="#{integracaoController.selected.idIntegracao}" title="#{bundle.ViewIntegracaoTitle_idIntegracao}"/>
+
+                    <p:outputLabel value="#{bundle.ViewIntegracaoLabel_dtInicio}"/>
+                    <p:outputLabel value="#{integracaoController.selected.dtInicio}" title="#{bundle.ViewIntegracaoTitle_dtInicio}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </p:outputLabel>
+
+                    <p:outputLabel value="#{bundle.ViewIntegracaoLabel_dtFim}"/>
+                    <p:outputLabel value="#{integracaoController.selected.dtFim}" title="#{bundle.ViewIntegracaoTitle_dtFim}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </p:outputLabel>
+
+                    <p:outputLabel value="#{bundle.ViewIntegracaoLabel_empresaIntegracao}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{integracaoController.selected.empresaIntegracao}" title="#{bundle.ViewIntegracaoTitle_empresaIntegracao}"/>
+
+                    <p:outputLabel value="#{bundle.ViewIntegracaoLabel_cpfFuncionario}"/>
+                    <p:outputLabel style="text-transform: uppercase" value="#{integracaoController.selected.cpfFuncionario}" title="#{bundle.ViewIntegracaoTitle_cpfFuncionario}"/>
+                </h:panelGrid>
+                <br></br>
+                <br></br>
+                <p:splitButton id= "edit" value="Ações" icon="ui-icon-arrow-4-diag" ajax="false" update="growl" >
+                    <p:separator></p:separator>
+                    <p:menuitem outcome="Edit" value="#{bundle.ViewIntegracaoEditLink}" icon="ui-icon-pencil" ajax="false" update="growl"  />
+                    <p:separator></p:separator>
+                    <p:menuitem action="#{integracaoController.prepareCreate}" value="#{bundle.ViewIntegracaoCreateLink}" icon="ui-icon-document-b" ajax="false" update="growl"  />    
+                    <p:separator></p:separator>
+                    <p:menuitem action="#{integracaoController.prepareList}" value="#{bundle.ViewIntegracaoShowAllLink}" icon="ui-icon-script" ajax="false" update="growl"  />    
+                    <p:separator></p:separator>
+                    <p:menuitem action="#{integracaoController.destroyAndView}" value="#{bundle.ViewIntegracaoDestroyLink}" icon="ui-icon-trash" ajax="false" update="growl"  />
+                </p:splitButton>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
