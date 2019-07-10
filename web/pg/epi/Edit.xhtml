@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditEpiTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditEpiLabel_idEpi}" for="idEpi" />
+                    <h:inputText id="idEpi" value="#{epiController.selected.idEpi}" title="#{bundle.EditEpiTitle_idEpi}" required="true" requiredMessage="#{bundle.EditEpiRequiredMessage_idEpi}"/>
+                    <h:outputLabel value="#{bundle.EditEpiLabel_dsEpi}" for="dsEpi" />
+                    <h:inputText id="dsEpi" value="#{epiController.selected.dsEpi}" title="#{bundle.EditEpiTitle_dsEpi}" />
+                    <h:outputLabel value="#{bundle.EditEpiLabel_valor}" for="valor" />
+                    <h:inputText id="valor" value="#{epiController.selected.valor}" title="#{bundle.EditEpiTitle_valor}" />
+                    <h:outputLabel value="#{bundle.EditEpiLabel_dataRetirada}" for="dataRetirada" />
+                    <h:inputText id="dataRetirada" value="#{epiController.selected.dataRetirada}" title="#{bundle.EditEpiTitle_dataRetirada}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditEpiLabel_funcionario}" for="funcionario" />
+                    <h:selectOneMenu id="funcionario" value="#{epiController.selected.funcionario}" title="#{bundle.EditEpiTitle_funcionario}" required="true" requiredMessage="#{bundle.EditEpiRequiredMessage_funcionario}">
+                        <f:selectItems value="#{funcionarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{epiController.update}" value="#{bundle.EditEpiSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditEpiViewLink}"/>
+                <br />
+                <h:commandLink action="#{epiController.prepareList}" value="#{bundle.EditEpiShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditEpiIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

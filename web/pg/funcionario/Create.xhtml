@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateFuncionarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateFuncionarioLabel_cpf}" for="cpf" />
+                    <h:inputText id="cpf" value="#{funcionarioController.selected.cpf}" title="#{bundle.CreateFuncionarioTitle_cpf}" required="true" requiredMessage="#{bundle.CreateFuncionarioRequiredMessage_cpf}"/>
+                    <h:outputLabel value="#{bundle.CreateFuncionarioLabel_nmFuncionario}" for="nmFuncionario" />
+                    <h:inputText id="nmFuncionario" value="#{funcionarioController.selected.nmFuncionario}" title="#{bundle.CreateFuncionarioTitle_nmFuncionario}" required="true" requiredMessage="#{bundle.CreateFuncionarioRequiredMessage_nmFuncionario}"/>
+                    <h:outputLabel value="#{bundle.CreateFuncionarioLabel_apelido}" for="apelido" />
+                    <h:inputText id="apelido" value="#{funcionarioController.selected.apelido}" title="#{bundle.CreateFuncionarioTitle_apelido}" />
+                    <h:outputLabel value="#{bundle.CreateFuncionarioLabel_rg}" for="rg" />
+                    <h:inputText id="rg" value="#{funcionarioController.selected.rg}" title="#{bundle.CreateFuncionarioTitle_rg}" />
+                    <h:outputLabel value="#{bundle.CreateFuncionarioLabel_ctps}" for="ctps" />
+                    <h:inputText id="ctps" value="#{funcionarioController.selected.ctps}" title="#{bundle.CreateFuncionarioTitle_ctps}" />
+                    <h:outputLabel value="#{bundle.CreateFuncionarioLabel_pisPasep}" for="pisPasep" />
+                    <h:inputText id="pisPasep" value="#{funcionarioController.selected.pisPasep}" title="#{bundle.CreateFuncionarioTitle_pisPasep}" />
+                    <h:outputLabel value="#{bundle.CreateFuncionarioLabel_cnh}" for="cnh" />
+                    <h:inputText id="cnh" value="#{funcionarioController.selected.cnh}" title="#{bundle.CreateFuncionarioTitle_cnh}" />
+                    <h:outputLabel value="#{bundle.CreateFuncionarioLabel_endereco}" for="endereco" />
+                    <h:inputText id="endereco" value="#{funcionarioController.selected.endereco}" title="#{bundle.CreateFuncionarioTitle_endereco}" />
+                    <h:outputLabel value="#{bundle.CreateFuncionarioLabel_bairro}" for="bairro" />
+                    <h:inputText id="bairro" value="#{funcionarioController.selected.bairro}" title="#{bundle.CreateFuncionarioTitle_bairro}" />
+                    <h:outputLabel value="#{bundle.CreateFuncionarioLabel_cep}" for="cep" />
+                    <h:inputText id="cep" value="#{funcionarioController.selected.cep}" title="#{bundle.CreateFuncionarioTitle_cep}" />
+                    <h:outputLabel value="#{bundle.CreateFuncionarioLabel_cidade}" for="cidade" />
+                    <h:inputText id="cidade" value="#{funcionarioController.selected.cidade}" title="#{bundle.CreateFuncionarioTitle_cidade}" />
+                    <h:outputLabel value="#{bundle.CreateFuncionarioLabel_uf}" for="uf" />
+                    <h:inputText id="uf" value="#{funcionarioController.selected.uf}" title="#{bundle.CreateFuncionarioTitle_uf}" />
+                    <h:outputLabel value="#{bundle.CreateFuncionarioLabel_banco}" for="banco" />
+                    <h:inputText id="banco" value="#{funcionarioController.selected.banco}" title="#{bundle.CreateFuncionarioTitle_banco}" />
+                    <h:outputLabel value="#{bundle.CreateFuncionarioLabel_agencia}" for="agencia" />
+                    <h:inputText id="agencia" value="#{funcionarioController.selected.agencia}" title="#{bundle.CreateFuncionarioTitle_agencia}" />
+                    <h:outputLabel value="#{bundle.CreateFuncionarioLabel_conta}" for="conta" />
+                    <h:inputText id="conta" value="#{funcionarioController.selected.conta}" title="#{bundle.CreateFuncionarioTitle_conta}" />
+                    <h:outputLabel value="#{bundle.CreateFuncionarioLabel_foneResid}" for="foneResid" />
+                    <h:inputText id="foneResid" value="#{funcionarioController.selected.foneResid}" title="#{bundle.CreateFuncionarioTitle_foneResid}" />
+                    <h:outputLabel value="#{bundle.CreateFuncionarioLabel_celular1}" for="celular1" />
+                    <h:inputText id="celular1" value="#{funcionarioController.selected.celular1}" title="#{bundle.CreateFuncionarioTitle_celular1}" />
+                    <h:outputLabel value="#{bundle.CreateFuncionarioLabel_dtAdmissao}" for="dtAdmissao" />
+                    <h:inputText id="dtAdmissao" value="#{funcionarioController.selected.dtAdmissao}" title="#{bundle.CreateFuncionarioTitle_dtAdmissao}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateFuncionarioLabel_dtDemissao}" for="dtDemissao" />
+                    <h:inputText id="dtDemissao" value="#{funcionarioController.selected.dtDemissao}" title="#{bundle.CreateFuncionarioTitle_dtDemissao}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateFuncionarioLabel_asoDtInicio}" for="asoDtInicio" />
+                    <h:inputText id="asoDtInicio" value="#{funcionarioController.selected.asoDtInicio}" title="#{bundle.CreateFuncionarioTitle_asoDtInicio}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateFuncionarioLabel_asoDtFim}" for="asoDtFim" />
+                    <h:inputText id="asoDtFim" value="#{funcionarioController.selected.asoDtFim}" title="#{bundle.CreateFuncionarioTitle_asoDtFim}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateFuncionarioLabel_observacao}" for="observacao" />
+                    <h:inputText id="observacao" value="#{funcionarioController.selected.observacao}" title="#{bundle.CreateFuncionarioTitle_observacao}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{funcionarioController.create}" value="#{bundle.CreateFuncionarioSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{funcionarioController.prepareList}" value="#{bundle.CreateFuncionarioShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateFuncionarioIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

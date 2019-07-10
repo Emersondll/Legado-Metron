@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateDespesaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateDespesaLabel_cdDespesa}" for="cdDespesa" />
+                    <h:inputText id="cdDespesa" value="#{despesaController.selected.cdDespesa}" title="#{bundle.CreateDespesaTitle_cdDespesa}" required="true" requiredMessage="#{bundle.CreateDespesaRequiredMessage_cdDespesa}"/>
+                    <h:outputLabel value="#{bundle.CreateDespesaLabel_dsDespesa}" for="dsDespesa" />
+                    <h:inputText id="dsDespesa" value="#{despesaController.selected.dsDespesa}" title="#{bundle.CreateDespesaTitle_dsDespesa}" required="true" requiredMessage="#{bundle.CreateDespesaRequiredMessage_dsDespesa}"/>
+                    <h:outputLabel value="#{bundle.CreateDespesaLabel_vlPadrao}" for="vlPadrao" />
+                    <h:inputText id="vlPadrao" value="#{despesaController.selected.vlPadrao}" title="#{bundle.CreateDespesaTitle_vlPadrao}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{despesaController.create}" value="#{bundle.CreateDespesaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{despesaController.prepareList}" value="#{bundle.CreateDespesaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateDespesaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

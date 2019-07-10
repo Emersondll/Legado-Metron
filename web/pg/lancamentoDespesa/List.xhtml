@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListLancamentoDespesaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListLancamentoDespesaEmpty}" rendered="#{lancamentoDespesaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{lancamentoDespesaController.items.rowCount > 0}">
+                    <h:outputText value="#{lancamentoDespesaController.pagination.pageFirstItem + 1}..#{lancamentoDespesaController.pagination.pageLastItem + 1}/#{lancamentoDespesaController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{lancamentoDespesaController.previous}" value="#{bundle.Previous} #{lancamentoDespesaController.pagination.pageSize}" rendered="#{lancamentoDespesaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{lancamentoDespesaController.next}" value="#{bundle.Next} #{lancamentoDespesaController.pagination.pageSize}" rendered="#{lancamentoDespesaController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{lancamentoDespesaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLancamentoDespesaTitle_lancamentoDespesaPK_dataDespesa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.lancamentoDespesaPK.dataDespesa}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLancamentoDespesaTitle_valorDespesa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valorDespesa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLancamentoDespesaTitle_quatidade}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.quatidade}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLancamentoDespesaTitle_conta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.conta}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLancamentoDespesaTitle_despesa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.despesa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLancamentoDespesaTitle_cdObra}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cdObra}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{lancamentoDespesaController.prepareView}" value="#{bundle.ListLancamentoDespesaViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{lancamentoDespesaController.prepareEdit}" value="#{bundle.ListLancamentoDespesaEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{lancamentoDespesaController.destroy}" value="#{bundle.ListLancamentoDespesaDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{lancamentoDespesaController.prepareCreate}" value="#{bundle.ListLancamentoDespesaCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListLancamentoDespesaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

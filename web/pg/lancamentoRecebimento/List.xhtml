@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListLancamentoRecebimentoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListLancamentoRecebimentoEmpty}" rendered="#{lancamentoRecebimentoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{lancamentoRecebimentoController.items.rowCount > 0}">
+                    <h:outputText value="#{lancamentoRecebimentoController.pagination.pageFirstItem + 1}..#{lancamentoRecebimentoController.pagination.pageLastItem + 1}/#{lancamentoRecebimentoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{lancamentoRecebimentoController.previous}" value="#{bundle.Previous} #{lancamentoRecebimentoController.pagination.pageSize}" rendered="#{lancamentoRecebimentoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{lancamentoRecebimentoController.next}" value="#{bundle.Next} #{lancamentoRecebimentoController.pagination.pageSize}" rendered="#{lancamentoRecebimentoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{lancamentoRecebimentoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLancamentoRecebimentoTitle_dataPagamento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dataPagamento}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLancamentoRecebimentoTitle_valorPago}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valorPago}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLancamentoRecebimentoTitle_notaFiscal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.notaFiscal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLancamentoRecebimentoTitle_tipoPagamento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoPagamento}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLancamentoRecebimentoTitle_observacao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.observacao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLancamentoRecebimentoTitle_idLancamentoRecebimento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idLancamentoRecebimento}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLancamentoRecebimentoTitle_contaDestino}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.contaDestino}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLancamentoRecebimentoTitle_cdObra}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cdObra}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{lancamentoRecebimentoController.prepareView}" value="#{bundle.ListLancamentoRecebimentoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{lancamentoRecebimentoController.prepareEdit}" value="#{bundle.ListLancamentoRecebimentoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{lancamentoRecebimentoController.destroy}" value="#{bundle.ListLancamentoRecebimentoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{lancamentoRecebimentoController.prepareCreate}" value="#{bundle.ListLancamentoRecebimentoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListLancamentoRecebimentoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

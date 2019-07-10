@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditLancServPrestadoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditLancServPrestadoLabel_lancServPrestadoPK_dtServico}" for="lancServPrestadoPK_dtServico" />
+                    <h:inputText id="lancServPrestadoPK_dtServico" value="#{lancServPrestadoController.selected.lancServPrestadoPK.dtServico}" title="#{bundle.EditLancServPrestadoTitle_lancServPrestadoPK_dtServico}" required="true" requiredMessage="#{bundle.EditLancServPrestadoRequiredMessage_lancServPrestadoPK_dtServico}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditLancServPrestadoLabel_notaFiscal}" for="notaFiscal" />
+                    <h:inputText id="notaFiscal" value="#{lancServPrestadoController.selected.notaFiscal}" title="#{bundle.EditLancServPrestadoTitle_notaFiscal}" />
+                    <h:outputLabel value="#{bundle.EditLancServPrestadoLabel_hrSaidaEscritorio}" for="hrSaidaEscritorio" />
+                    <h:inputText id="hrSaidaEscritorio" value="#{lancServPrestadoController.selected.hrSaidaEscritorio}" title="#{bundle.EditLancServPrestadoTitle_hrSaidaEscritorio}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditLancServPrestadoLabel_hrChegadaEscritorio}" for="hrChegadaEscritorio" />
+                    <h:inputText id="hrChegadaEscritorio" value="#{lancServPrestadoController.selected.hrChegadaEscritorio}" title="#{bundle.EditLancServPrestadoTitle_hrChegadaEscritorio}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditLancServPrestadoLabel_hrInicioServico}" for="hrInicioServico" />
+                    <h:inputText id="hrInicioServico" value="#{lancServPrestadoController.selected.hrInicioServico}" title="#{bundle.EditLancServPrestadoTitle_hrInicioServico}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditLancServPrestadoLabel_hrFimServico}" for="hrFimServico" />
+                    <h:inputText id="hrFimServico" value="#{lancServPrestadoController.selected.hrFimServico}" title="#{bundle.EditLancServPrestadoTitle_hrFimServico}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditLancServPrestadoLabel_qtdCobrar}" for="qtdCobrar" />
+                    <h:inputText id="qtdCobrar" value="#{lancServPrestadoController.selected.qtdCobrar}" title="#{bundle.EditLancServPrestadoTitle_qtdCobrar}" />
+                    <h:outputLabel value="#{bundle.EditLancServPrestadoLabel_qtdRealizada}" for="qtdRealizada" />
+                    <h:inputText id="qtdRealizada" value="#{lancServPrestadoController.selected.qtdRealizada}" title="#{bundle.EditLancServPrestadoTitle_qtdRealizada}" />
+                    <h:outputLabel value="#{bundle.EditLancServPrestadoLabel_valorCobrar}" for="valorCobrar" />
+                    <h:inputText id="valorCobrar" value="#{lancServPrestadoController.selected.valorCobrar}" title="#{bundle.EditLancServPrestadoTitle_valorCobrar}" />
+                    <h:outputLabel value="#{bundle.EditLancServPrestadoLabel_cdBem}" for="cdBem" />
+                    <h:selectOneMenu id="cdBem" value="#{lancServPrestadoController.selected.cdBem}" title="#{bundle.EditLancServPrestadoTitle_cdBem}" >
+                        <f:selectItems value="#{bemController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditLancServPrestadoLabel_funcionario}" for="funcionario" />
+                    <h:selectOneMenu id="funcionario" value="#{lancServPrestadoController.selected.funcionario}" title="#{bundle.EditLancServPrestadoTitle_funcionario}" required="true" requiredMessage="#{bundle.EditLancServPrestadoRequiredMessage_funcionario}">
+                        <f:selectItems value="#{funcionarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditLancServPrestadoLabel_obra}" for="obra" />
+                    <h:selectOneMenu id="obra" value="#{lancServPrestadoController.selected.obra}" title="#{bundle.EditLancServPrestadoTitle_obra}" required="true" requiredMessage="#{bundle.EditLancServPrestadoRequiredMessage_obra}">
+                        <f:selectItems value="#{obraController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditLancServPrestadoLabel_servico}" for="servico" />
+                    <h:selectOneMenu id="servico" value="#{lancServPrestadoController.selected.servico}" title="#{bundle.EditLancServPrestadoTitle_servico}" required="true" requiredMessage="#{bundle.EditLancServPrestadoRequiredMessage_servico}">
+                        <f:selectItems value="#{servicoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{lancServPrestadoController.update}" value="#{bundle.EditLancServPrestadoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditLancServPrestadoViewLink}"/>
+                <br />
+                <h:commandLink action="#{lancServPrestadoController.prepareList}" value="#{bundle.EditLancServPrestadoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditLancServPrestadoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

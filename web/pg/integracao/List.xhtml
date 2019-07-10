@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListIntegracaoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListIntegracaoEmpty}" rendered="#{integracaoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{integracaoController.items.rowCount > 0}">
+                    <h:outputText value="#{integracaoController.pagination.pageFirstItem + 1}..#{integracaoController.pagination.pageLastItem + 1}/#{integracaoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{integracaoController.previous}" value="#{bundle.Previous} #{integracaoController.pagination.pageSize}" rendered="#{integracaoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{integracaoController.next}" value="#{bundle.Next} #{integracaoController.pagination.pageSize}" rendered="#{integracaoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{integracaoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListIntegracaoTitle_idIntegracao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idIntegracao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListIntegracaoTitle_dtInicio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtInicio}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListIntegracaoTitle_dtFim}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtFim}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListIntegracaoTitle_empresaIntegracao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.empresaIntegracao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListIntegracaoTitle_cpfFuncionario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cpfFuncionario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{integracaoController.prepareView}" value="#{bundle.ListIntegracaoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{integracaoController.prepareEdit}" value="#{bundle.ListIntegracaoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{integracaoController.destroy}" value="#{bundle.ListIntegracaoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{integracaoController.prepareCreate}" value="#{bundle.ListIntegracaoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListIntegracaoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

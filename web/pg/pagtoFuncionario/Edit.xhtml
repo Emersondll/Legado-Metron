@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPagtoFuncionarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPagtoFuncionarioLabel_pagtoFuncionarioPK_dtInicio}" for="pagtoFuncionarioPK_dtInicio" />
+                    <h:inputText id="pagtoFuncionarioPK_dtInicio" value="#{pagtoFuncionarioController.selected.pagtoFuncionarioPK.dtInicio}" title="#{bundle.EditPagtoFuncionarioTitle_pagtoFuncionarioPK_dtInicio}" required="true" requiredMessage="#{bundle.EditPagtoFuncionarioRequiredMessage_pagtoFuncionarioPK_dtInicio}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditPagtoFuncionarioLabel_dtFim}" for="dtFim" />
+                    <h:inputText id="dtFim" value="#{pagtoFuncionarioController.selected.dtFim}" title="#{bundle.EditPagtoFuncionarioTitle_dtFim}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditPagtoFuncionarioLabel_valor}" for="valor" />
+                    <h:inputText id="valor" value="#{pagtoFuncionarioController.selected.valor}" title="#{bundle.EditPagtoFuncionarioTitle_valor}" />
+                    <h:outputLabel value="#{bundle.EditPagtoFuncionarioLabel_valorRefeicaoDia}" for="valorRefeicaoDia" />
+                    <h:inputText id="valorRefeicaoDia" value="#{pagtoFuncionarioController.selected.valorRefeicaoDia}" title="#{bundle.EditPagtoFuncionarioTitle_valorRefeicaoDia}" />
+                    <h:outputLabel value="#{bundle.EditPagtoFuncionarioLabel_qtdValeRefeicao}" for="qtdValeRefeicao" />
+                    <h:inputText id="qtdValeRefeicao" value="#{pagtoFuncionarioController.selected.qtdValeRefeicao}" title="#{bundle.EditPagtoFuncionarioTitle_qtdValeRefeicao}" />
+                    <h:outputLabel value="#{bundle.EditPagtoFuncionarioLabel_valorValeTransporte}" for="valorValeTransporte" />
+                    <h:inputText id="valorValeTransporte" value="#{pagtoFuncionarioController.selected.valorValeTransporte}" title="#{bundle.EditPagtoFuncionarioTitle_valorValeTransporte}" />
+                    <h:outputLabel value="#{bundle.EditPagtoFuncionarioLabel_qtdValeTransporte}" for="qtdValeTransporte" />
+                    <h:inputText id="qtdValeTransporte" value="#{pagtoFuncionarioController.selected.qtdValeTransporte}" title="#{bundle.EditPagtoFuncionarioTitle_qtdValeTransporte}" />
+                    <h:outputLabel value="#{bundle.EditPagtoFuncionarioLabel_funcionario}" for="funcionario" />
+                    <h:selectOneMenu id="funcionario" value="#{pagtoFuncionarioController.selected.funcionario}" title="#{bundle.EditPagtoFuncionarioTitle_funcionario}" required="true" requiredMessage="#{bundle.EditPagtoFuncionarioRequiredMessage_funcionario}">
+                        <f:selectItems value="#{funcionarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{pagtoFuncionarioController.update}" value="#{bundle.EditPagtoFuncionarioSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPagtoFuncionarioViewLink}"/>
+                <br />
+                <h:commandLink action="#{pagtoFuncionarioController.prepareList}" value="#{bundle.EditPagtoFuncionarioShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPagtoFuncionarioIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

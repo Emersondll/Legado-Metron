@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditServicoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditServicoLabel_cdServico}" for="cdServico" />
+                    <h:inputText id="cdServico" value="#{servicoController.selected.cdServico}" title="#{bundle.EditServicoTitle_cdServico}" required="true" requiredMessage="#{bundle.EditServicoRequiredMessage_cdServico}"/>
+                    <h:outputLabel value="#{bundle.EditServicoLabel_descServico}" for="descServico" />
+                    <h:inputText id="descServico" value="#{servicoController.selected.descServico}" title="#{bundle.EditServicoTitle_descServico}" required="true" requiredMessage="#{bundle.EditServicoRequiredMessage_descServico}"/>
+                    <h:outputLabel value="#{bundle.EditServicoLabel_tpServico}" for="tpServico" />
+                    <h:inputText id="tpServico" value="#{servicoController.selected.tpServico}" title="#{bundle.EditServicoTitle_tpServico}" />
+                    <h:outputLabel value="#{bundle.EditServicoLabel_tpObra}" for="tpObra" />
+                    <h:inputText id="tpObra" value="#{servicoController.selected.tpObra}" title="#{bundle.EditServicoTitle_tpObra}" />
+                    <h:outputLabel value="#{bundle.EditServicoLabel_vlPadrao}" for="vlPadrao" />
+                    <h:inputText id="vlPadrao" value="#{servicoController.selected.vlPadrao}" title="#{bundle.EditServicoTitle_vlPadrao}" />
+                    <h:outputLabel value="#{bundle.EditServicoLabel_tpCobranca}" for="tpCobranca" />
+                    <h:inputText id="tpCobranca" value="#{servicoController.selected.tpCobranca}" title="#{bundle.EditServicoTitle_tpCobranca}" />
+                    <h:outputLabel value="#{bundle.EditServicoLabel_idFalta}" for="idFalta" />
+                    <h:inputText id="idFalta" value="#{servicoController.selected.idFalta}" title="#{bundle.EditServicoTitle_idFalta}" />
+                </h:panelGrid>
+                <h:commandLink action="#{servicoController.update}" value="#{bundle.EditServicoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditServicoViewLink}"/>
+                <br />
+                <h:commandLink action="#{servicoController.prepareList}" value="#{bundle.EditServicoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditServicoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPagtoFuncionarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPagtoFuncionarioLabel_pagtoFuncionarioPK_dtInicio}"/>
+                    <h:outputText value="#{pagtoFuncionarioController.selected.pagtoFuncionarioPK.dtInicio}" title="#{bundle.ViewPagtoFuncionarioTitle_pagtoFuncionarioPK_dtInicio}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPagtoFuncionarioLabel_dtFim}"/>
+                    <h:outputText value="#{pagtoFuncionarioController.selected.dtFim}" title="#{bundle.ViewPagtoFuncionarioTitle_dtFim}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPagtoFuncionarioLabel_valor}"/>
+                    <h:outputText value="#{pagtoFuncionarioController.selected.valor}" title="#{bundle.ViewPagtoFuncionarioTitle_valor}"/>
+                    <h:outputText value="#{bundle.ViewPagtoFuncionarioLabel_valorRefeicaoDia}"/>
+                    <h:outputText value="#{pagtoFuncionarioController.selected.valorRefeicaoDia}" title="#{bundle.ViewPagtoFuncionarioTitle_valorRefeicaoDia}"/>
+                    <h:outputText value="#{bundle.ViewPagtoFuncionarioLabel_qtdValeRefeicao}"/>
+                    <h:outputText value="#{pagtoFuncionarioController.selected.qtdValeRefeicao}" title="#{bundle.ViewPagtoFuncionarioTitle_qtdValeRefeicao}"/>
+                    <h:outputText value="#{bundle.ViewPagtoFuncionarioLabel_valorValeTransporte}"/>
+                    <h:outputText value="#{pagtoFuncionarioController.selected.valorValeTransporte}" title="#{bundle.ViewPagtoFuncionarioTitle_valorValeTransporte}"/>
+                    <h:outputText value="#{bundle.ViewPagtoFuncionarioLabel_qtdValeTransporte}"/>
+                    <h:outputText value="#{pagtoFuncionarioController.selected.qtdValeTransporte}" title="#{bundle.ViewPagtoFuncionarioTitle_qtdValeTransporte}"/>
+                    <h:outputText value="#{bundle.ViewPagtoFuncionarioLabel_funcionario}"/>
+                    <h:outputText value="#{pagtoFuncionarioController.selected.funcionario}" title="#{bundle.ViewPagtoFuncionarioTitle_funcionario}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{pagtoFuncionarioController.destroyAndView}" value="#{bundle.ViewPagtoFuncionarioDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPagtoFuncionarioEditLink}"/>
+                <br />
+                <h:commandLink action="#{pagtoFuncionarioController.prepareCreate}" value="#{bundle.ViewPagtoFuncionarioCreateLink}" />
+                <br />
+                <h:commandLink action="#{pagtoFuncionarioController.prepareList}" value="#{bundle.ViewPagtoFuncionarioShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPagtoFuncionarioIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

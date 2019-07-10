@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateObraTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateObraLabel_cdObra}" for="cdObra" />
+                    <h:inputText id="cdObra" value="#{obraController.selected.cdObra}" title="#{bundle.CreateObraTitle_cdObra}" required="true" requiredMessage="#{bundle.CreateObraRequiredMessage_cdObra}"/>
+                    <h:outputLabel value="#{bundle.CreateObraLabel_nmObra}" for="nmObra" />
+                    <h:inputText id="nmObra" value="#{obraController.selected.nmObra}" title="#{bundle.CreateObraTitle_nmObra}" required="true" requiredMessage="#{bundle.CreateObraRequiredMessage_nmObra}"/>
+                    <h:outputLabel value="#{bundle.CreateObraLabel_endereco}" for="endereco" />
+                    <h:inputText id="endereco" value="#{obraController.selected.endereco}" title="#{bundle.CreateObraTitle_endereco}" />
+                    <h:outputLabel value="#{bundle.CreateObraLabel_bairro}" for="bairro" />
+                    <h:inputText id="bairro" value="#{obraController.selected.bairro}" title="#{bundle.CreateObraTitle_bairro}" />
+                    <h:outputLabel value="#{bundle.CreateObraLabel_cidade}" for="cidade" />
+                    <h:inputText id="cidade" value="#{obraController.selected.cidade}" title="#{bundle.CreateObraTitle_cidade}" />
+                    <h:outputLabel value="#{bundle.CreateObraLabel_uf}" for="uf" />
+                    <h:inputText id="uf" value="#{obraController.selected.uf}" title="#{bundle.CreateObraTitle_uf}" />
+                    <h:outputLabel value="#{bundle.CreateObraLabel_status}" for="status" />
+                    <h:inputText id="status" value="#{obraController.selected.status}" title="#{bundle.CreateObraTitle_status}" />
+                    <h:outputLabel value="#{bundle.CreateObraLabel_tpObra}" for="tpObra" />
+                    <h:inputText id="tpObra" value="#{obraController.selected.tpObra}" title="#{bundle.CreateObraTitle_tpObra}" />
+                    <h:outputLabel value="#{bundle.CreateObraLabel_observacao}" for="observacao" />
+                    <h:inputText id="observacao" value="#{obraController.selected.observacao}" title="#{bundle.CreateObraTitle_observacao}" />
+                    <h:outputLabel value="#{bundle.CreateObraLabel_cep}" for="cep" />
+                    <h:inputText id="cep" value="#{obraController.selected.cep}" title="#{bundle.CreateObraTitle_cep}" />
+                    <h:outputLabel value="#{bundle.CreateObraLabel_cdCliente}" for="cdCliente" />
+                    <h:selectOneMenu id="cdCliente" value="#{obraController.selected.cdCliente}" title="#{bundle.CreateObraTitle_cdCliente}" required="true" requiredMessage="#{bundle.CreateObraRequiredMessage_cdCliente}">
+                        <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{obraController.create}" value="#{bundle.CreateObraSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{obraController.prepareList}" value="#{bundle.CreateObraShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateObraIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditLancamentoDespesaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditLancamentoDespesaLabel_lancamentoDespesaPK_dataDespesa}" for="lancamentoDespesaPK_dataDespesa" />
+                    <h:inputText id="lancamentoDespesaPK_dataDespesa" value="#{lancamentoDespesaController.selected.lancamentoDespesaPK.dataDespesa}" title="#{bundle.EditLancamentoDespesaTitle_lancamentoDespesaPK_dataDespesa}" required="true" requiredMessage="#{bundle.EditLancamentoDespesaRequiredMessage_lancamentoDespesaPK_dataDespesa}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditLancamentoDespesaLabel_valorDespesa}" for="valorDespesa" />
+                    <h:inputText id="valorDespesa" value="#{lancamentoDespesaController.selected.valorDespesa}" title="#{bundle.EditLancamentoDespesaTitle_valorDespesa}" />
+                    <h:outputLabel value="#{bundle.EditLancamentoDespesaLabel_quatidade}" for="quatidade" />
+                    <h:inputText id="quatidade" value="#{lancamentoDespesaController.selected.quatidade}" title="#{bundle.EditLancamentoDespesaTitle_quatidade}" />
+                    <h:outputLabel value="#{bundle.EditLancamentoDespesaLabel_conta}" for="conta" />
+                    <h:selectOneMenu id="conta" value="#{lancamentoDespesaController.selected.conta}" title="#{bundle.EditLancamentoDespesaTitle_conta}" >
+                        <f:selectItems value="#{contaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditLancamentoDespesaLabel_despesa}" for="despesa" />
+                    <h:selectOneMenu id="despesa" value="#{lancamentoDespesaController.selected.despesa}" title="#{bundle.EditLancamentoDespesaTitle_despesa}" required="true" requiredMessage="#{bundle.EditLancamentoDespesaRequiredMessage_despesa}">
+                        <f:selectItems value="#{despesaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditLancamentoDespesaLabel_cdObra}" for="cdObra" />
+                    <h:selectOneMenu id="cdObra" value="#{lancamentoDespesaController.selected.cdObra}" title="#{bundle.EditLancamentoDespesaTitle_cdObra}" >
+                        <f:selectItems value="#{obraController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{lancamentoDespesaController.update}" value="#{bundle.EditLancamentoDespesaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditLancamentoDespesaViewLink}"/>
+                <br />
+                <h:commandLink action="#{lancamentoDespesaController.prepareList}" value="#{bundle.EditLancamentoDespesaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditLancamentoDespesaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
