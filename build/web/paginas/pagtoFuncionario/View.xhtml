@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="top">Dados de Lançamento de Pagamento</ui:define>
+
+        <ui:define name="body">
+            <h:form>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <p:outputLabel value="#{bundle.ViewPagtoFuncionarioLabel_pagtoFuncionarioPK_dtInicio}"/>
+                    <p:outputLabel value="#{pagtoFuncionarioController.selected.pagtoFuncionarioPK.dtInicio}" title="#{bundle.ViewPagtoFuncionarioTitle_pagtoFuncionarioPK_dtInicio}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </p:outputLabel>
+
+                    <p:outputLabel value="#{bundle.ViewPagtoFuncionarioLabel_dtFim}"/>
+                    <p:outputLabel value="#{pagtoFuncionarioController.selected.dtFim}" title="#{bundle.ViewPagtoFuncionarioTitle_dtFim}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </p:outputLabel>
+
+                    <p:outputLabel value="#{bundle.ViewPagtoFuncionarioLabel_valor}"/>
+                    <p:outputLabel value="#{pagtoFuncionarioController.selected.valor}" title="#{bundle.ViewPagtoFuncionarioTitle_valor}"/>
+
+                    <p:outputLabel value="#{bundle.ViewPagtoFuncionarioLabel_valorRefeicaoDia}"/>
+                    <p:outputLabel value="#{pagtoFuncionarioController.selected.valorRefeicaoDia}" title="#{bundle.ViewPagtoFuncionarioTitle_valorRefeicaoDia}"/>
+
+                    <p:outputLabel value="#{bundle.ViewPagtoFuncionarioLabel_qtdValeRefeicao}"/>
+                    <p:outputLabel value="#{pagtoFuncionarioController.selected.qtdValeRefeicao}" title="#{bundle.ViewPagtoFuncionarioTitle_qtdValeRefeicao}"/>
+
+                    <p:outputLabel value="#{bundle.ViewPagtoFuncionarioLabel_valorValeTransporte}"/>
+                    <p:outputLabel value="#{pagtoFuncionarioController.selected.valorValeTransporte}" title="#{bundle.ViewPagtoFuncionarioTitle_valorValeTransporte}"/>
+
+                    <p:outputLabel value="#{bundle.ViewPagtoFuncionarioLabel_qtdValeTransporte}"/>
+                    <p:outputLabel value="#{pagtoFuncionarioController.selected.qtdValeTransporte}" title="#{bundle.ViewPagtoFuncionarioTitle_qtdValeTransporte}"/>
+
+                    <p:outputLabel value="#{bundle.ViewPagtoFuncionarioLabel_funcionario}"/>
+                    <p:outputLabel value="#{pagtoFuncionarioController.selected.funcionario}" title="#{bundle.ViewPagtoFuncionarioTitle_funcionario}"/>
+                </h:panelGrid>
+                <br></br>
+                <br></br>
+                <p:splitButton id= "edit" value="Ações" icon="ui-icon-arrow-4-diag" ajax="false" update="growl" >
+                    <p:separator></p:separator>
+                    <p:menuitem outcome="Edit" value="#{bundle.ViewPagtoFuncionarioEditLink}" icon="ui-icon-pencil" ajax="false" update="growl"  />
+                    <p:separator></p:separator>
+                    <p:menuitem action="#{pagtoFuncionarioController.prepareCreate}" value="#{bundle.ViewPagtoFuncionarioCreateLink}" icon="ui-icon-document-b" ajax="false" update="growl"  />    
+                    <p:separator></p:separator>
+                    <p:menuitem action="#{pagtoFuncionarioController.prepareList}" value="#{bundle.ViewPagtoFuncionarioShowAllLink}" icon="ui-icon-script" ajax="false" update="growl"  />    
+                    <p:separator></p:separator>
+                    <p:menuitem action="#{pagtoFuncionarioController.destroyAndView}" value="#{bundle.ViewPagtoFuncionarioDestroyLink}" icon="ui-icon-trash" ajax="false" update="growl"  />
+                </p:splitButton>                
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

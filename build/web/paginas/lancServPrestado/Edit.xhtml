@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="top">Editar Serviço Prestado</ui:define>
+
+        <ui:define name="body">
+
+            <h:form> 
+                <h:panelGrid columns="2" cellpadding="5">
+                    <p:outputLabel value="#{bundle.CreateLancServPrestadoLabel_lancServPrestadoPK_dtServico}" for="lancServPrestadoPK_dtServico" />
+                    <p:calendar pattern="dd/MM/yyyy" mask="true" id="lancServPrestadoPK_dtServico" value="#{lancServPrestadoController.selected.lancServPrestadoPK.dtServico}" title="#{bundle.CreateLancServPrestadoTitle_lancServPrestadoPK_dtServico}" required="true" requiredMessage="#{bundle.CreateLancServPrestadoRequiredMessage_lancServPrestadoPK_dtServico}"/>
+
+
+                    <p:outputLabel value="#{bundle.CreateLancServPrestadoLabel_notaFiscal}" for="notaFiscal" />
+                    <p:inputText id="notaFiscal" value="#{lancServPrestadoController.selected.notaFiscal}" title="#{bundle.CreateLancServPrestadoTitle_notaFiscal}" />
+
+
+                    <p:outputLabel value="#{bundle.CreateLancServPrestadoLabel_hrSaidaEscritorio}" for="hrSaidaEscritorio" />
+                    <p:calendar pattern="dd/MM/yyyy HH:mm" id="hrSaidaEscritorio" value="#{lancServPrestadoController.selected.hrSaidaEscritorio}" title="#{bundle.CreateLancServPrestadoTitle_hrSaidaEscritorio}" />
+
+
+                    <p:outputLabel value="#{bundle.CreateLancServPrestadoLabel_hrInicioServico}" for="hrInicioServico" />
+                    <p:calendar pattern="dd/MM/yyyy HH:mm" id="hrInicioServico" value="#{lancServPrestadoController.selected.hrInicioServico}" title="#{bundle.CreateLancServPrestadoTitle_hrInicioServico}" />
+
+
+                    <p:outputLabel value="#{bundle.CreateLancServPrestadoLabel_hrFimServico}" for="hrFimServico" />
+                    <p:calendar pattern="dd/MM/yyyy HH:mm" id="hrFimServico" value="#{lancServPrestadoController.selected.hrFimServico}" title="#{bundle.CreateLancServPrestadoTitle_hrFimServico}" />
+
+                    <p:outputLabel value="#{bundle.CreateLancServPrestadoLabel_hrChegadaEscritorio}" for="hrChegadaEscritorio" />
+                    <p:calendar pattern="dd/MM/yyyy HH:mm" id="hrChegadaEscritorio" value="#{lancServPrestadoController.selected.hrChegadaEscritorio}" title="#{bundle.CreateLancServPrestadoTitle_hrChegadaEscritorio}" />
+
+
+                    <p:outputLabel value="#{bundle.CreateLancServPrestadoLabel_qtdCobrar}" for="qtdCobrar" />
+                    <p:inputText id="qtdCobrar" value="#{lancServPrestadoController.selected.qtdCobrar}" title="#{bundle.CreateLancServPrestadoTitle_qtdCobrar}" />
+
+                    <p:outputLabel value="#{bundle.CreateLancServPrestadoLabel_qtdRealizada}" for="qtdRealizada" />
+                    <p:inputText id="qtdRealizada" value="#{lancServPrestadoController.selected.qtdRealizada}" title="#{bundle.CreateLancServPrestadoTitle_qtdRealizada}" />
+
+                    <p:outputLabel value="#{bundle.CreateLancServPrestadoLabel_valorCobrar}" for="valorCobrar" />
+                    <p:inputText id="valorCobrar" value="#{lancServPrestadoController.selected.valorCobrar}" title="#{bundle.CreateLancServPrestadoTitle_valorCobrar}" />
+
+                    <p:outputLabel value="#{bundle.CreateLancServPrestadoLabel_cdBem}" for="cdBem" />
+                    <p:selectOneMenu id="cdBem" 
+                                     value="#{lancServPrestadoController.selected.cdBem}" 
+                                     required="true" 
+                                     style="width:170px"
+                                     filter="true">
+
+                        <f:selectItems value="#{bemController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="#{bundle.CreateLancServPrestadoLabel_funcionario}" for="funcionario" />
+                    <p:selectOneMenu id="funcionario" 
+                                     value="#{lancServPrestadoController.selected.funcionario}"
+                                     required="true" 
+                                     style="width:170px"
+                                     filter="true">
+                        <f:selectItems value="#{funcionarioController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="#{bundle.CreateLancServPrestadoLabel_obra}" for="obra" />
+                    <p:selectOneMenu id="obra" 
+                                     value="#{lancServPrestadoController.selected.obra}" 
+                                     required="true" 
+                                     style="width:170px"
+                                     filter="true">
+                        <f:selectItems value="#{obraController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="#{bundle.CreateLancServPrestadoLabel_servico}" for="servico" />
+                    <p:selectOneMenu id="servico" 
+                                     value="#{lancServPrestadoController.selected.servico}"
+                                     required="true" 
+                                     style="width:170px"
+                                     filter="true">
+                        <f:selectItems value="#{servicoController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+                </h:panelGrid>
+                <br></br>
+                <br></br>
+                <p:splitButton id= "Save" action="#{lancServPrestadoController.update}" value="#{bundle.EditLancServPrestadoSaveLink}" icon="ui-icon-disk" ajax="false" update="growl" >
+                    <p:separator></p:separator>
+                    <p:menuitem id= "exibirtodos" action="#{lancServPrestadoController.prepareList}" value="#{bundle.EditLancServPrestadoShowAllLink}" immediate="true" icon="ui-icon-document" ajax="false" update="grid"  />
+                    <p:menuitem id= "vieweste" outcome="View" value="#{bundle.EditLancServPrestadoViewLink}" icon="ui-icon-refresh" ajax="false" update="grid"  />
+                </p:splitButton>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="top">Editar Cadastro de Obras</ui:define>
+
+        <ui:define name="body">
+
+            <h:form>
+                <h:panelGrid columns="2" cellpadding="5">
+
+                    <p:outputLabel value="#{bundle.EditObraLabel_nmObra}" for="nmObra" />
+                    <p:inputText style="text-transform: uppercase" id="nmObra" value="#{obraController.selected.nmObra}" title="#{bundle.EditObraTitle_nmObra}" required="true" requiredMessage="#{bundle.EditObraRequiredMessage_nmObra}"/>
+
+                    <p:outputLabel value="#{bundle.EditObraLabel_endereco}" for="endereco" />
+                    <p:inputText style="text-transform: uppercase"  id="endereco" value="#{obraController.selected.endereco}" title="#{bundle.EditObraTitle_endereco}" />
+
+                    <p:outputLabel value="#{bundle.EditObraLabel_bairro}" for="bairro" />
+                    <p:inputText style="text-transform: uppercase" id="bairro" value="#{obraController.selected.bairro}" title="#{bundle.EditObraTitle_bairro}" />
+
+                    <p:outputLabel value="#{bundle.EditObraLabel_cidade}" for="cidade" />
+                    <p:inputText style="text-transform: uppercase" id="cidade" value="#{obraController.selected.cidade}" title="#{bundle.EditObraTitle_cidade}" />
+
+                    <p:outputLabel value="#{bundle.EditObraLabel_cep}" for="cep" />
+                    <p:inputText id="cep" maxlength="8" value="#{obraController.selected.cep}" title="#{bundle.EditObraTitle_cep}" />
+
+                    <p:outputLabel value="#{bundle.EditObraLabel_uf}" for="uf" />
+                    <p:inputText style="text-transform: uppercase" maxlength="2" id="uf" value="#{obraController.selected.uf}" title="#{bundle.EditObraTitle_uf}" />
+
+                    <p:outputLabel value="#{bundle.EditObraLabel_status}" for="status" />
+                    <p:selectOneMenu id="status" value="#{obraController.selected.status}" style="width:170px" >
+                        <f:selectItem itemLabel="Aberta" itemValue="A" />
+                        <f:selectItem itemLabel="Fechada" itemValue="F" />
+
+                    </p:selectOneMenu>
+                    <p:outputLabel value="#{bundle.EditObraLabel_tpObra}" for="tpObra" />
+                    <p:selectOneMenu id="tpObra" value="#{obraController.selected.tpObra}"  style="width:170px" >
+                        <f:selectItem itemLabel="Civil" itemValue="C" />
+                        <f:selectItem itemLabel="Industrial" itemValue="I" />
+                        <f:selectItem itemLabel="Urbano" itemValue="U" />
+                        <f:selectItem itemLabel="Rural" itemValue="R" />
+                        <f:selectItem itemLabel="Várias" itemValue="V" />
+
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="#{bundle.EditObraLabel_observacao}" for="observacao" />
+                    <p:inputTextarea  rows="6" cols="33" id="observacao" value="#{obraController.selected.observacao}" title="#{bundle.EditObraTitle_observacao}" />
+
+                    <p:outputLabel value="#{bundle.EditObraLabel_cdCliente}" for="cdCliente" />
+                    <p:selectOneMenu filter="true" id="cdCliente" value="#{obraController.selected.cdCliente}"  required="true" requiredMessage="#{bundle.EditObraRequiredMessage_cdCliente}">
+                        <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+
+                </h:panelGrid>
+                <br></br>
+                <br></br>
+                <p:splitButton id= "Save" action="#{obraController.update}" value="#{bundle.EditObraSaveLink}" icon="ui-icon-disk" ajax="false" update="growl" >
+                    <p:separator></p:separator>
+                    <p:menuitem id= "exibirtodos" action="#{obraController.prepareList}" value="#{bundle.EditObraShowAllLink}" immediate="true" icon="ui-icon-document" ajax="false" update="grid"  />
+                    <p:menuitem id= "vieweste" outcome="View" value="#{bundle.EditObraViewLink}" icon="ui-icon-refresh" ajax="false" update="grid"  />
+                </p:splitButton>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
